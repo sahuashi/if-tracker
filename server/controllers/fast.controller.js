@@ -1,4 +1,4 @@
-import Fast from '../models/fast.js';
+import Fast from '../models/fast.model.js';
 
 export const getFasts = (req, res) => {
     Fast.find()

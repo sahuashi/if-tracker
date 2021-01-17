@@ -6,7 +6,7 @@ import bodyparser from 'body-parser'
 import session from 'express-session'
 import passport from 'passport'
 import { Strategy } from 'passport-local'
-import User from './models/user.js'
+import User from './models/user.model.js'
 import fastsRouter from './routes/fasts.js'
 import userRouter from './routes/user.js'
 
@@ -27,9 +27,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 //passport.use(User.createStrategy());
-passport.use(new Strategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+passport.use(new Strategy(User.authenticate()));
 
 // adds respective routers to app routes
 app.use('/fasts', fastsRouter);

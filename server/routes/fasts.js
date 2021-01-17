@@ -1,5 +1,5 @@
 import express from 'express';
-import { getFasts, addFast, deleteFast } from '../controllers/fasts.js'
+import { getFasts, addFast, deleteFast } from '../controllers/fast.controller.js'
 
 var router = express.Router()
 
