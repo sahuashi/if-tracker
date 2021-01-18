@@ -16,12 +16,23 @@ export const register = (req, res) => {
 }
 
 export const login = passport.authenticate("local", {
-    successRedirect: "/user",
+    successRedirect: "/fasts/",
     failureRedirect: "/user/signup"
 })
 
 export const logout = (req, res) => {
+    console.log(`logging out user: ${req.user.username}`);
     req.logout();
-    //res.send('Logged out successfully!');
     res.redirect("/user/signup");
+}
+
+export const checkAuthentication = (req, res, next) => {
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/user/signup");
+}
+
+export const getAccount = (req, res) => {
+    res.send(`welcome to ${req.username}'s account`);
 }

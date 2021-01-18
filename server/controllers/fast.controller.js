@@ -1,9 +1,10 @@
 import Fast from '../models/fast.model.js';
 
 export const getFasts = (req, res) => {
-    Fast.find()
+    res.send("on fasts list page!");
+    /* Fast.find()
         .then(fasts => res.json(fasts))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .catch(err => res.status(400).json('Error: ' + err)); */
 }
 
 export const addFast = (req, res) => {
