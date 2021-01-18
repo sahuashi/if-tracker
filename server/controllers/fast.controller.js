@@ -1,7 +1,7 @@
 import Fast from '../models/fast.model.js';
 
 export const getFasts = (req, res) => {
-    res.send("on fasts list page!");
+    res.send(`on fasts list page, ${req.user.username}!`);
     /* Fast.find()
         .then(fasts => res.json(fasts))
         .catch(err => res.status(400).json('Error: ' + err)); */

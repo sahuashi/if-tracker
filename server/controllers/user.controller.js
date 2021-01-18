@@ -34,5 +34,5 @@ export const checkAuthentication = (req, res, next) => {
 }
 
 export const getAccount = (req, res) => {
-    res.send(`welcome to ${req.username}'s account`);
+    res.send(`welcome to ${req.user.username}'s account`);
 }
