@@ -8,9 +8,7 @@ export const register = (req, res) => {
         }
         
         passport.authenticate("local")(req, res, () => {
-            res.send('user created and logged in');
-            //res.redirect("/");
-            res.send('/');
+            return res.send('new user was created and logged in');
         })
     })
 }

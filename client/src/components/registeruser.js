@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import axios from 'axios';
 
 export default class RegisterUser extends React.Component{
     constructor(props){
@@ -27,6 +28,10 @@ export default class RegisterUser extends React.Component{
         };
 
         console.log(User);
+
+        axios.post('http://localhost:5000/user/signup', User)
+        .then(res => console.log(res.data))
+        .catch(console.error());
     }
 
     render(){
