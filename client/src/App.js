@@ -1,26 +1,31 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import RegisterUser from "./components/registeruser";
+import LoginUser from "./components/loginuser";
+import MyFasts from "./components/myfasts";
+import AddFast from "./components/addfast";
 
 function App() {
   return (
     <Router>
-      <div>
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home">SixteenAte: Fasting Tracker</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Link className="nav-link" to="/addfast">Create Fast</Link>
-              <Link className="nav-link" to="/myfasts">View Fasts</Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-        <Switch>
-          <Route exact path="/" />
-        </Switch>
-      </div>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand href="#home">SixteenAte: Fasting Tracker</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Link className="nav-link" to="/user/signup">Register User</Link>
+            <Link className="nav-link" to="/user/login">Login User</Link>
+            <Link className="nav-link" to="/fasts/" >My Fasts</Link>
+            <Link className="nav-link" to="/fasts/add">Add Fast</Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+      <Route path="/user/signup" component={RegisterUser} />
+      <Route path="/user/login" component={LoginUser} />
+      <Route exact path="/fasts/" component={MyFasts} />
+      <Route path="/fasts/add" component={AddFast} />
     </Router>
   );
 }
