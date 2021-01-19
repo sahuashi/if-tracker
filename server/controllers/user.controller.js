@@ -25,11 +25,11 @@ export const logout = (req, res) => {
     res.redirect("/user/signup");
 }
 
-export const checkAuthentication = (req, res, next) => {
+export const checkAuthentication = (req, res) => {
     if(req.user || req.isAuthenticated()){
-        return next(req.user);
+        return res.send(req.user);
     }
-    return res.send('not authenticated/no user');
+    res.send('not authenticated/no user');
     //res.redirect("/user/signup");
 }
 

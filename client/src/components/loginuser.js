@@ -5,7 +5,7 @@ import axios from 'axios'
 export default class LoginUser extends React.Component{
     constructor(props){
         super(props);
-        this.state = { username: '', password: '' };
+        this.state = { username: '', password: '' , user_id: '', isLoggedIn: false};
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,13 +26,16 @@ export default class LoginUser extends React.Component{
             password: this.state.password
         };
 
-        axios.post('http://localhost:5000/user/login', User)
+        axios.post('http://localhost:5000/user/login', User, { withCredentials: true})
         .then(res => {
-            console.log(res);
             if(res.data.route === 'signup'){
                 window.location = '/user/signup';
             }
             else{
+                //const user = res.data;
+                // this.setState({
+                //     user_id: res._id,
+                // })
                 window.location = '/fasts';
             }
         })

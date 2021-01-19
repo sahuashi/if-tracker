@@ -13,10 +13,9 @@ export default class MyFasts extends React.Component{
           };
         axios.get('http://localhost:5000/user/account', config)
         .then(res => {
-            console.log(res);
-        })
-        .catch(err => {
-            console.log(err);
+            const user = res.data;
+            console.log(user);
+            //console.log(res);
         })
         return (
             <h1>Fasts List!</h1>
