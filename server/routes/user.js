@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-    res.send('GET: user signup route')
+    res.send({route: 'signup'});
 });
 
 router.post('/signup', register);

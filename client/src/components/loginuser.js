@@ -26,15 +26,16 @@ export default class LoginUser extends React.Component{
             password: this.state.password
         };
 
-        console.log(User);
-
         axios.post('http://localhost:5000/user/login', User)
-        .then(res => console.log(res.data))
-        .catch(err => {
-            console.log(err); 
-        });
-
-        window.location = '/fasts';
+        .then(res => {
+            console.log(res);
+            if(res.data.route === 'signup'){
+                window.location = '/user/signup';
+            }
+            else{
+                window.location = '/fasts';
+            }
+        })
     }
     
     render(){
