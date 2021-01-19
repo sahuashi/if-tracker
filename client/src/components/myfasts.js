@@ -11,7 +11,7 @@ export default class MyFasts extends React.Component{
               'Content-Type': 'application/json',
             },
           };
-        axios.get('http://localhost:5000/user/account', config)
+        axios.get('http://localhost:5000/user/auth', config)
         .then(res => {
             const user = res.data;
             console.log(user);

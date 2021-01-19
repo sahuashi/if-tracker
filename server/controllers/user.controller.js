@@ -32,7 +32,3 @@ export const checkAuthentication = (req, res) => {
     res.send('not authenticated/no user');
     //res.redirect("/user/signup");
 }
-
-export const getAccount = (req, res) => {
-    res.send(`welcome to ${req.user.username}'s account`);
-}
