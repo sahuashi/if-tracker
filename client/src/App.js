@@ -6,6 +6,7 @@ import RegisterUser from "./components/registeruser";
 import LoginUser from "./components/loginuser";
 import MyFasts from "./components/myfasts";
 import AddFast from "./components/addfast";
+import LogoutUser from "./components/logoutuser";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Nav className="mr-auto">
             <Link className="nav-link" to="/user/signup">Register User</Link>
             <Link className="nav-link" to="/user/login">Login User</Link>
+            <Link className="nav-link" to="/user/logout">Logout User</Link>
             <Link className="nav-link" to="/fasts/" >My Fasts</Link>
             <Link className="nav-link" to="/fasts/add">Add Fast</Link>
           </Nav>
@@ -26,6 +28,7 @@ function App() {
       <Route path="/user/login" component={LoginUser} />
       <Route exact path="/fasts/" component={MyFasts} />
       <Route path="/fasts/add" component={AddFast} />
+      <Route path="/user/logout" component={LogoutUser} />
     </Router>
   );
 }
