@@ -16,6 +16,7 @@ router.post('/login', login);
 
 router.get('/logout', logout);
 
-router.get('/account', checkAuthentication, getAccount);
+router.get('/account', checkAuthentication);
+//router.get('/account', checkAuthentication, getAccount);
 
 export default router;

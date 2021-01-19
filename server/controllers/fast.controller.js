@@ -1,7 +1,12 @@
 import Fast from '../models/fast.model.js';
 
 export const getFasts = (req, res) => {
-    res.send(`on fasts list page!`);
+    if(req.user || req.isAuthenticated()){
+        return res.send(`on fasts list page!`);
+    }
+    else{
+        return res.send(`no user`);
+    }
     // send req.user.username
     //res.send(`on fasts list page, ${req.user.username}!`);
     /* Fast.find()
