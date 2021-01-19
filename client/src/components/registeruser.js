@@ -1,11 +1,11 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 
 export default class RegisterUser extends React.Component{
     constructor(props){
         super(props);
-        this.state = { username: '', password: '' };
+        this.state = { username: '', password: '' , error: ''};
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,11 +32,18 @@ export default class RegisterUser extends React.Component{
         axios.post('http://localhost:5000/user/signup', User)
         .then(res => {
             console.log(res.data);
-            if(res.data.status !== 404){
+            if(res.data.status === 404){
+                this.setState({
+                    username: '',
+                    password: '',
+                    error: res.data.message + ". Please try again."
+                });
+            }
+            else{
                 const user = res.data;
                 console.log(user);
+                window.location = "/fasts"
             }
-
         })
     }
 
@@ -44,6 +51,7 @@ export default class RegisterUser extends React.Component{
         return (
             <div>
             <h1>Register User!</h1>
+            { this.state.error && <Alert variant="danger"> {this.state.error} </Alert>}
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Control type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsernameChange}/>
