@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import axios from 'axios'
 
 export default class LoginUser extends React.Component{
     constructor(props){
@@ -26,6 +27,14 @@ export default class LoginUser extends React.Component{
         };
 
         console.log(User);
+
+        axios.post('http://localhost:5000/user/login', User)
+        .then(res => console.log(res.data))
+        .catch(err => {
+            console.log(err); 
+        });
+
+        window.location = '/fasts';
     }
     
     render(){

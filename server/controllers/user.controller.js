@@ -4,11 +4,12 @@ import User from '../models/user.model.js';
 export const register = (req, res) => {
     User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
         if (err) {
-            res.send(err);
+            err.status = 404;
+            return res.send(err);
         }
         
         passport.authenticate("local")(req, res, () => {
-            return res.send('new user was created and logged in');
+            return res.send(req.user);
         })
     })
 }

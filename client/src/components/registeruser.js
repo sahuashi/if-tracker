@@ -30,8 +30,14 @@ export default class RegisterUser extends React.Component{
         console.log(User);
 
         axios.post('http://localhost:5000/user/signup', User)
-        .then(res => console.log(res.data))
-        .catch(console.error());
+        .then(res => {
+            console.log(res.data);
+            if(res.data.status !== 404){
+                const user = res.data;
+                console.log(user);
+            }
+
+        })
     }
 
     render(){
