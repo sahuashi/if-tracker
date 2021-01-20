@@ -1,8 +1,10 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios'
+import { UserContext } from './user';
 
 export default class LoginUser extends React.Component{
+    static contextType = UserContext;
     constructor(props){
         super(props);
         this.state = { username: '', password: '' , user_id: '', isLoggedIn: false};
@@ -32,10 +34,11 @@ export default class LoginUser extends React.Component{
                 window.location = '/user/signup';
             }
             else{
-                //const user = res.data;
-                // this.setState({
-                //     user_id: res._id,
-                // })
+                const context = this.context;
+                const u = res.data;
+                context.setUserID(u._id);
+                context.setUsername(u.username);
+                context.setAuthentication(true);
                 window.location = '/fasts';
             }
         })

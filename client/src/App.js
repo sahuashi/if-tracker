@@ -7,6 +7,7 @@ import LoginUser from "./components/loginuser";
 import MyFasts from "./components/myfasts";
 import AddFast from "./components/addfast";
 import LogoutUser from "./components/logoutuser";
+import { UserProvider } from "./components/user";
 
 function App() {
   return (
@@ -24,11 +25,13 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      <UserProvider>
       <Route path="/user/signup" component={RegisterUser} />
       <Route path="/user/login" component={LoginUser} />
       <Route exact path="/fasts/" component={MyFasts} />
       <Route path="/fasts/add" component={AddFast} />
       <Route path="/user/logout" component={LogoutUser} />
+      </UserProvider>
     </Router>
   );
 }

@@ -1,14 +1,22 @@
 import React from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
+import { UserContext } from './user'
 
 export default class RegisterUser extends React.Component{
+    static contextType = UserContext;
+    
     constructor(props){
         super(props);
         this.state = { username: '', password: '' , error: ''};
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    
+    componentDidMount(){
+        const usercontext = this.context;
+        console.log("Logging context: " + usercontext.user_id + " | " + usercontext.isAuthenticated);
     }
 
     handleUsernameChange(event) {
@@ -40,8 +48,11 @@ export default class RegisterUser extends React.Component{
                 });
             }
             else{
-                const user = res.data;
-                console.log(user);
+                const context = this.context;
+                const u = res.data;
+                context.setUserID(u._id);
+                context.setUsername(u.username);
+                context.setAuthentication(true);
                 window.location = "/fasts"
             }
         })
