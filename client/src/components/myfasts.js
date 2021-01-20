@@ -3,8 +3,7 @@ import axios from 'axios';
 
 
 export default class MyFasts extends React.Component{
-
-    render(){
+    componentDidMount(){
         const config = {
             withCredentials: true,
             headers: {
@@ -13,10 +12,19 @@ export default class MyFasts extends React.Component{
           };
         axios.get('http://localhost:5000/user/auth', config)
         .then(res => {
-            const user = res.data;
-            console.log(user);
             //console.log(res);
+            if(res.data.status !== "unauth"){
+                const user = res.data;
+                console.log(user);
+            }
+            else{
+                window.location = "/user/login"
+            }
+            //console.log(user);
         })
+    }
+
+    render(){
         return (
             <h1>Fasts List!</h1>
         );
