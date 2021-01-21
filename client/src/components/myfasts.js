@@ -3,38 +3,42 @@ import axios from 'axios';
 import { UserContext } from './user';
 
 
-export default class MyFasts extends React.Component{
+export default class MyFasts extends React.Component {
     static contextType = UserContext;
-    componentDidMount(){
+    componentDidMount() {
+        this.initUser();
+    }
+
+    initUser() {
         const config = {
             withCredentials: true,
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
-          };
+        };
         axios.get('http://localhost:5000/user/auth', config)
-        .then(res => {
-            //console.log(res);
-            if(res.data.status !== "unauth"){
-                const user = res.data;
-                console.log(user);
-                const context = this.context;
-                const u = res.data;
-                context.setUserID(u._id);
-                context.setUsername(u.username);
-                context.setAuthentication(true);
-                console.log(context.name);
-                console.log(context.user_id);
-                console.log(context.isAuthenticated);
-            }
-            else{
-                window.location = "/user/login"
-            }
-            //console.log(user);
-        })
+            .then(res => {
+                if (res.data.status === "unauth") {
+                    window.location = "/user/login"
+                }
+                else {
+                    this.updateState(res);
+                }
+            })
     }
 
-    render(){
+    updateState(res) {
+        const context = this.context;
+        console.log(res.data);
+        context.setUserID(res.data._id);
+        context.setUsername(res.data.username);
+        context.setAuthentication(true);
+        console.log(context.name);
+        console.log(context.user_id);
+        console.log(context.isAuthenticated);
+    }
+
+    render() {
         return (
             <h1>Fasts List!</h1>
         );

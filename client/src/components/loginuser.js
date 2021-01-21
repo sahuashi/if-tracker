@@ -7,7 +7,7 @@ export default class LoginUser extends React.Component{
     static contextType = UserContext;
     constructor(props){
         super(props);
-        this.state = { username: '', password: '' , user_id: '', isLoggedIn: false};
+        this.state = { username: '', password: '' }
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,23 +22,17 @@ export default class LoginUser extends React.Component{
 
     handleSubmit(event){
         event.preventDefault();
-
         const User = {
             username: this.state.username,
             password: this.state.password
         };
-
+        
         axios.post('http://localhost:5000/user/login', User, { withCredentials: true})
         .then(res => {
             if(res.data.route === 'signup'){
                 window.location = '/user/signup';
             }
             else{
-                const context = this.context;
-                const u = res.data;
-                context.setUserID(u._id);
-                context.setUsername(u.username);
-                context.setAuthentication(true);
                 window.location = '/fasts';
             }
         })

@@ -13,9 +13,7 @@ export const register = (req, res) => {
         return res.send(err);
       }
 
-      passport.authenticate("local")(req, res, () => {
-        return res.send(req.user);
-      });
+      return res.sendStatus(200);
     }
   );
 };

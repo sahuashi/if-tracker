@@ -48,12 +48,7 @@ export default class RegisterUser extends React.Component{
                 });
             }
             else{
-                const context = this.context;
-                const u = res.data;
-                context.setUserID(u._id);
-                context.setUsername(u.username);
-                context.setAuthentication(true);
-                window.location = "/fasts"
+                window.location = "/user/login"
             }
         })
     }
