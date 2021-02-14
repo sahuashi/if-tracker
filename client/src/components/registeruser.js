@@ -6,7 +6,7 @@ export default class RegisterUser extends React.Component{
     
     constructor(props){
         super(props);
-
+        console.log(this.props);
         this.state = { username: '', password: '' , error: ''};
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -43,8 +43,10 @@ export default class RegisterUser extends React.Component{
                     password: '',
                     error: res.data.message + ". Please try again."
                 });
-
-                this.props.user.id = 404;
+                this.props.onChange({
+                    id: 404,
+                    isLoggedIn: false,
+                })
                 console.log(this.props);
             }
             else{

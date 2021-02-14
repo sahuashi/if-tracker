@@ -22,19 +22,19 @@ function App() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Link className="nav-link" to="/user/signup">Register User</Link>
-            <Link className="nav-link" to="/user/login">Login User</Link>
-            <Link className="nav-link" to="/user/logout">Logout User</Link>
+            {!user.isLoggedIn && <Link className="nav-link" to="/user/signup">Register User</Link>}
+            {!user.isLoggedIn && <Link className="nav-link" to="/user/login">Login User</Link>}
+            {user.isLoggedIn && <Link className="nav-link" to="/user/logout">Logout User</Link>}
             <Link className="nav-link" to="/fasts/" >My Fasts</Link>
             <Link className="nav-link" to="/fasts/add">Add Fast</Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Route path="/user/signup" render={() => <RegisterUser user={user} />} />
-      <Route path="/user/login" render={() => <LoginUser user={user} />} />
-      <Route exact path="/fasts/" render={() => <MyFasts user={user} />} />
-      <Route path="/fasts/add" render={() => <AddFast user={user} />} />
-      <Route path="/user/logout" render={() => <LogoutUser user={user} />} />
+      <Route path="/user/signup" render={() => <RegisterUser user={user} onChange={setUser}/>} />
+      <Route path="/user/login" render={() => <LoginUser user={user} onChange={setUser}/>} />
+      <Route exact path="/fasts/" render={() => <MyFasts user={user} onChange={setUser}/>} />
+      <Route path="/fasts/add" render={() => <AddFast user={user} />} onChange={setUser}/>
+      <Route path="/user/logout" render={() => <LogoutUser user={user} onChange={setUser}/>} />
     </Router>
   );
 }

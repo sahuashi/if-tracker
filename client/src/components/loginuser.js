@@ -7,6 +7,7 @@ export default class LoginUser extends React.Component{
 
     constructor(props){
         super(props);
+        console.log(this.props);
         this.state = { username: '', password: '' }
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -35,6 +36,10 @@ export default class LoginUser extends React.Component{
                 window.location = '/user/signup';
             }
             else{
+                this.props.onChange({
+                    id: 200,
+                    isLoggedIn: true,
+                })
                 window.location = '/fasts';
             }
         })
