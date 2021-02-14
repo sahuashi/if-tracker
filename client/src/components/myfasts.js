@@ -12,11 +12,13 @@ export default class MyFasts extends React.Component {
     render() {
         return (
             <div>
-            <h1>Fasts List!</h1>
-            {this.props.user.isLoggedIn && <h1> You're logged in and able to view saved fasts</h1>}
-            {!this.props.user.isLoggedIn && <div>
-            <Button variant="info" href='/user/signup'>Signup</Button>
-            <Button variant="info" href='/user/login'>Login</Button></div>}
+            {this.props.user.isLoggedIn && <div>
+                <h1>Fasts List!</h1> <br/> 
+                <h1>You're logged in and able to view saved fasts</h1></div>}
+            {!this.props.user.isLoggedIn && <div> 
+                <h1>You must log in to view your fasts!</h1>
+                <Button variant="info" href='/user/signup'>Signup</Button>
+                <Button variant="info" href='/user/login'>Login</Button></div>}
             </div>
         );
     }

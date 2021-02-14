@@ -26,7 +26,7 @@ function App() {
             {!user.isLoggedIn && <Link className="nav-link" to="/user/login">Login User</Link>}
             {user.isLoggedIn && <Link className="nav-link" to="/user/logout">Logout User</Link>}
             <Link className="nav-link" to="/fasts/" >My Fasts</Link>
-            <Link className="nav-link" to="/fasts/add">Add Fast</Link>
+            {user.isLoggedIn && <Link className="nav-link" to="/fasts/add">Add Fast</Link>}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -2,7 +2,6 @@ import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios'
 
-
 export default class LoginUser extends React.Component{
 
     constructor(props){
@@ -24,6 +23,7 @@ export default class LoginUser extends React.Component{
 
     handleSubmit(event){
         event.preventDefault();
+
         const User = {
             username: this.state.username,
             password: this.state.password
@@ -35,20 +35,33 @@ export default class LoginUser extends React.Component{
                 window.location = '/user/signup';
             }
             else{
-                this.props.onChange({
-                    id: 200,
-                    isLoggedIn: true,
-                })
-
-                this.props.history.push('/fasts');
-                //console.log(this.props);
-
-                // this.props.history.push({ 
-                //     pathname: '/fasts',
-                //     //state: this.props.user
-                // });
+                this.auth();
             }
         })
+    }
+
+    auth() {
+        var id = "";
+        const config = {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        axios.get('http://localhost:5000/user/auth', config)
+            .then(res => {
+                console.log(res.data._id);
+                id = res.data._id;
+                this.update(id);
+            })
+    }
+
+    update(id){
+        this.props.onChange({
+            id: id,
+            isLoggedIn: true,
+        })
+        this.props.history.push('/fasts');
     }
     
     render(){

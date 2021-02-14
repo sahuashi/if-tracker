@@ -10,19 +10,7 @@ export default function auth() {
 
     axios.get('http://localhost:5000/user/auth', config)
         .then(res => {
-            if (res.data.status === "unauth") {
-                window.location = "/user/login"
-            }
-            else {
-                updateState(res);
-            }
+            const user = res.data._id;
+            return user;
         })
-}
-
-function updateState(res) {
-    console.log(res.data);
-    this.props.onChange({
-        id: res.data._id,
-        isLoggedIn: true,
-    })
 }
