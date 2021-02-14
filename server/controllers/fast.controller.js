@@ -1,21 +1,15 @@
 import Fast from '../models/fast.model.js';
 
 export const getFasts = (req, res) => {
-    if(req.user || req.isAuthenticated()){
-        return res.send(`on fasts list page!`);
-    }
-    else{
-        return res.send(`no user`);
-    }
-    // send req.user.username
-    //res.send(`on fasts list page, ${req.user.username}!`);
-    /* Fast.find()
+    console.log("QUERY: " + req.query.id);
+    Fast.find({'user': req.query.id})
         .then(fasts => res.json(fasts))
-        .catch(err => res.status(400).json('Error: ' + err)); */
+        .catch(err => res.status(400).json('Error: ' + err));
+
 }
 
 export const addFast = (req, res) => {
-    const startTime = Date.parse(req.body.starttime);
+    const startTime = Date.parse(req.body.startTime);
     const endTime = Date.parse(req.body.endTime);
     // TODO: register user id
     const user = req.body.user;

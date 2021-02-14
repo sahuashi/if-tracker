@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
-import axios from 'axios';
+import FastList from './fastlist';
 
 export default class MyFasts extends React.Component {
 
@@ -14,7 +14,9 @@ export default class MyFasts extends React.Component {
             <div>
             {this.props.user.isLoggedIn && <div>
                 <h1>Fasts List!</h1> <br/> 
-                <h1>You're logged in and able to view saved fasts</h1></div>}
+                <h1>You're logged in and able to view saved fasts</h1>
+                <FastList user={this.props.user}></FastList>
+                </div>}
             {!this.props.user.isLoggedIn && <div> 
                 <h1>You must log in to view your fasts!</h1>
                 <Button variant="info" href='/user/signup'>Signup</Button>
