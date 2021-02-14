@@ -22,6 +22,11 @@ export default class LogoutUser extends React.Component{
             this.setState({
                 username: res.data.msg
             });
+            this.props.onChange({
+                id: 100,
+                isLoggedIn: false,
+            })
+            console.log(this.props);
         })
         .catch(err => {console.log(err)})
     }

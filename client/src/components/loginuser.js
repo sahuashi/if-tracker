@@ -40,7 +40,8 @@ export default class LoginUser extends React.Component{
                     id: 200,
                     isLoggedIn: true,
                 })
-                window.location = '/fasts';
+                console.log(this.props);
+                //window.location = '/fasts';
             }
         })
     }
