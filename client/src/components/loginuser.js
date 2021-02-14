@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios'
-import { UserContext } from './user';
+
 
 export default class LoginUser extends React.Component{
-    static contextType = UserContext;
+
     constructor(props){
         super(props);
         this.state = { username: '', password: '' }
@@ -12,6 +12,7 @@ export default class LoginUser extends React.Component{
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
     handleUsernameChange(event) {
         this.setState({username: event.target.value});
     }
@@ -22,6 +23,7 @@ export default class LoginUser extends React.Component{
 
     handleSubmit(event){
         event.preventDefault();
+
         const User = {
             username: this.state.username,
             password: this.state.password
@@ -44,9 +46,15 @@ export default class LoginUser extends React.Component{
             <h1>Login User!</h1>
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
-                    <Form.Control type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsernameChange}/>
+                    <Form.Control type="text" 
+                    placeholder="Username" 
+                    value={this.state.username} 
+                    onChange={this.handleUsernameChange}/>
                     <br/>
-                    <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange}/>
+                    <Form.Control type="password" 
+                    placeholder="Password" 
+                    value={this.state.password} 
+                    onChange={this.handlePasswordChange}/>
                 </Form.Group>
                 <Button variant="primary" type="submit">Submit</Button>
             </Form>

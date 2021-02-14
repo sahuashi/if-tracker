@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,9 +7,14 @@ import LoginUser from "./components/loginuser";
 import MyFasts from "./components/myfasts";
 import AddFast from "./components/addfast";
 import LogoutUser from "./components/logoutuser";
-import { UserProvider } from "./components/user";
 
 function App() {
+
+  const [user, setUser] = useState({
+    id: '',
+    isLoggedIn: false,
+  });
+
   return (
     <Router>
       <Navbar bg="light" expand="lg">
@@ -25,13 +30,11 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <UserProvider>
-      <Route path="/user/signup" component={RegisterUser} />
-      <Route path="/user/login" component={LoginUser} />
-      <Route exact path="/fasts/" component={MyFasts} />
-      <Route path="/fasts/add" component={AddFast} />
-      <Route path="/user/logout" component={LogoutUser} />
-      </UserProvider>
+      <Route path="/user/signup" render={() => <RegisterUser user={user} />} />
+      <Route path="/user/login" render={() => <LoginUser user={user} />} />
+      <Route exact path="/fasts/" render={() => <MyFasts user={user} />} />
+      <Route path="/fasts/add" render={() => <AddFast user={user} />} />
+      <Route path="/user/logout" render={() => <LogoutUser user={user} />} />
     </Router>
   );
 }

@@ -1,22 +1,19 @@
 import React from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
-import { UserContext } from './user'
 
 export default class RegisterUser extends React.Component{
-    static contextType = UserContext;
     
     constructor(props){
         super(props);
+
         this.state = { username: '', password: '' , error: ''};
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    
-    componentDidMount(){
-        const usercontext = this.context;
-        console.log("Logging context: " + usercontext.user_id + " | " + usercontext.isAuthenticated);
+
+        console.log(this.props.user.id);
+        console.log(this.props.user.isLoggedIn);
     }
 
     handleUsernameChange(event) {
@@ -46,8 +43,13 @@ export default class RegisterUser extends React.Component{
                     password: '',
                     error: res.data.message + ". Please try again."
                 });
+
+                this.props.user.id = 404;
+                console.log(this.props);
             }
             else{
+                this.props.user.id=200;
+                console.log(this.props);
                 window.location = "/user/login"
             }
         })
@@ -60,9 +62,15 @@ export default class RegisterUser extends React.Component{
             { this.state.error && <Alert variant="danger"> {this.state.error} </Alert>}
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
-                    <Form.Control type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsernameChange}/>
+                    <Form.Control type="text" 
+                    placeholder="Username" 
+                    value={this.state.username} 
+                    onChange={this.handleUsernameChange}/>
                     <br/>
-                    <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange}/>
+                    <Form.Control type="password" 
+                    placeholder="Password" 
+                    value={this.state.password} 
+                    onChange={this.handlePasswordChange}/>
                 </Form.Group>
                 <Button variant="primary" type="submit">Submit</Button>
             </Form>
