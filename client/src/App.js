@@ -18,7 +18,7 @@ function App() {
   return (
     <Router>
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">SixteenAte: Fasting Tracker</Navbar.Brand>
+        <Navbar.Brand href="/">SixteenAte: Fasting Tracker</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -30,11 +30,11 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Route path="/user/signup" render={() => <RegisterUser user={user} onChange={setUser}/>} />
-      <Route path="/user/login" render={() => <LoginUser user={user} onChange={setUser}/>} />
-      <Route exact path="/fasts/" render={() => <MyFasts user={user} onChange={setUser}/>} />
-      <Route path="/fasts/add" render={() => <AddFast user={user} />} onChange={setUser}/>
-      <Route path="/user/logout" render={() => <LogoutUser user={user} onChange={setUser}/>} />
+      <Route path="/user/signup" render={(props) => <RegisterUser {...props} user={user} onChange={setUser}/>} />
+      <Route path="/user/login" render={(props) => <LoginUser {...props} user={user} onChange={setUser}/>} />
+      <Route exact path="/fasts/" render={(props) => <MyFasts {...props} user={user} onChange={setUser}/>} />
+      <Route path="/fasts/add" render={(props) => <AddFast {...props} user={user} />} onChange={setUser}/>
+      <Route path="/user/logout" render={(props) => <LogoutUser {...props} user={user} onChange={setUser}/>} />
     </Router>
   );
 }

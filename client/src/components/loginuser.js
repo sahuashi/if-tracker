@@ -24,7 +24,6 @@ export default class LoginUser extends React.Component{
 
     handleSubmit(event){
         event.preventDefault();
-
         const User = {
             username: this.state.username,
             password: this.state.password
@@ -40,8 +39,14 @@ export default class LoginUser extends React.Component{
                     id: 200,
                     isLoggedIn: true,
                 })
-                console.log(this.props);
-                //window.location = '/fasts';
+
+                this.props.history.push('/fasts');
+                //console.log(this.props);
+
+                // this.props.history.push({ 
+                //     pathname: '/fasts',
+                //     //state: this.props.user
+                // });
             }
         })
     }

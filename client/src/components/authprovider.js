@@ -20,12 +20,9 @@ export default function auth() {
 }
 
 function updateState(res) {
-    const context = this.context;
     console.log(res.data);
-    context.setUserID(res.data._id);
-    context.setUsername(res.data.username);
-    context.setAuthentication(true);
-    console.log(context.name);
-    console.log(context.user_id);
-    console.log(context.isAuthenticated);
+    this.props.onChange({
+        id: res.data._id,
+        isLoggedIn: true,
+    })
 }
