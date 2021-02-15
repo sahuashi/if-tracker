@@ -7,22 +7,36 @@ export default class Fast extends React.Component{
         this.state = {
             start: new Date(this.props.start), 
             end: new Date(this.props.end), 
-            difference: 0
+            difference: 0,
+            elapsed: 0,
+            progress: 0
         };
         this.getDifference = this.getDifference.bind(this);
+        this.getElapsed = this.getElapsed.bind(this);
+        this.getProgress = this.getProgress.bind(this);
     }
 
     componentDidMount(){
         this.getDifference();
+        this.getElapsed();
     }
 
     getDifference(){
-        var diffInSeconds = 0;
-        diffInSeconds = (this.state.end - this.state.start)/1000;
-        console.log(diffInSeconds);
-        this.setState({ difference: diffInSeconds}, () => {
-            (console.log(this.state))
+        var diffInSeconds = (this.state.end - this.state.start)/1000;
+        this.setState({ difference: diffInSeconds });
+    }
+
+    getElapsed(){
+        var elapsed = ((new Date())- this.state.start)/1000;
+        this.setState({ elapsed: elapsed }, ()=>{
+            (this.getProgress())
         });
+    }
+
+    getProgress(){
+        var progress = (this.state.elapsed/this.state.difference)*100;
+        progress = Math.round(progress);
+        this.setState({ progress: progress });
     }
 
     render() {
@@ -30,9 +44,13 @@ export default class Fast extends React.Component{
         <div>
             Fast: from {this.props.start} to {this.props.end}!
             <br/>
-            Duration: <Moment duration={this.props.start} date={this.props.end}/>
+            Duration: <Moment duration={this.state.start} date={this.state.end}/>
             <br/>
             Difference: {this.state.difference}
+            <br/>
+            Time since: <Moment date={this.state.start} durationFromNow/>
+            <br/>
+            Progress (%): {this.state.progress}
         </div>)
     }
 }
