@@ -1,7 +1,7 @@
 import Fast from '../models/fast.model.js';
 
 export const getFasts = (req, res) => {
-    console.log("QUERY: " + req.query.id);
+    //console.log("QUERY: " + req.query.id);
     Fast.find({'user': req.query.id})
         .then(fasts => res.json(fasts))
         .catch(err => res.status(400).json('Error: ' + err));

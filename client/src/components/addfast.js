@@ -1,10 +1,12 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import DateTimePicker from 'react-datetime-picker'
+import axios from 'axios';
 
 export default class AddFast extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props);
         this.state = {
             startdate: new Date(), 
             enddate: new Date()
@@ -26,11 +28,17 @@ export default class AddFast extends React.Component {
         event.preventDefault();
 
         const Fast = {
-            startdate: this.state.startdate,
-            enddate: this.state.enddate
+            startTime: this.state.startdate,
+            endTime: this.state.enddate,
+            user: this.props.user.id
         };
 
         console.log(Fast);
+
+        axios.post('http://localhost:5000/fasts/add', Fast)
+        .then(res => {
+            console.log(res.data);})
+
     }
     render() {
         return (
