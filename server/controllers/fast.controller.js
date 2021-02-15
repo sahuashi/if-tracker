@@ -11,7 +11,6 @@ export const getFasts = (req, res) => {
 export const addFast = (req, res) => {
     const startTime = Date.parse(req.body.startTime);
     const endTime = Date.parse(req.body.endTime);
-    // TODO: register user id
     const user = req.body.user;
 
     const newFast = new Fast({

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Fast from './fast';
 
 export default class FastList extends React.Component{
     constructor(props){
@@ -35,10 +36,12 @@ export default class FastList extends React.Component{
     render(){
         return (
         <div>
-            {this.state.fasts.map((fast, i) => 
-            (<li key={i}>
-                Fast: from {fast.startTime} to {fast.endTime}!
-            </li>))}
-        </div>);
+            {this.state.fasts.map((fast, i) => (
+            <p key={i}>
+                <Fast start={fast.startTime} end={fast.endTime}/>
+            </p>
+            ))}
+        </div>
+        );
     }
 }
