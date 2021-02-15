@@ -37,9 +37,9 @@ export default class FastList extends React.Component{
         return (
         <div>
             {this.state.fasts.map((fast, i) => (
-            <p key={i}>
-                <Fast start={fast.startTime} end={fast.endTime}/>
-            </p>
+            <div key={i}>
+                <Fast start={fast.startTime} end={fast.endTime}/><br/>
+            </div>
             ))}
         </div>
         );
