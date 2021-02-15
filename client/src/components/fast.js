@@ -1,5 +1,6 @@
 import Moment from 'react-moment';
-import React from 'react'
+import React from 'react';
+import {ProgressBar} from 'react-bootstrap';
 
 export default class Fast extends React.Component{
     constructor(props){
@@ -35,14 +36,19 @@ export default class Fast extends React.Component{
 
     getProgress(){
         var progress = (this.state.elapsed/this.state.difference)*100;
-        progress = Math.round(progress);
+        progress > 100? progress = 100 : progress = Math.round(progress);
         this.setState({ progress: progress });
     }
 
     render() {
+        var progressbar;
+        this.state.progress === 100 ?
+        progressbar = <ProgressBar variant="success" now={100} label={'100%'}/> :
+        progressbar = <ProgressBar animated now={this.state.progress} label={`${this.state.progress}%`} />
+
         return (
         <div>
-            Fast: from {this.props.start} to {this.props.end}!
+            Start Date: {this.props.start} to End Date: {this.props.end}
             <br/>
             Duration: <Moment duration={this.state.start} date={this.state.end}/>
             <br/>
@@ -51,6 +57,7 @@ export default class Fast extends React.Component{
             Time since: <Moment date={this.state.start} durationFromNow/>
             <br/>
             Progress (%): {this.state.progress}
+            {progressbar}
         </div>)
     }
 }
