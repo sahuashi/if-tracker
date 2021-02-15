@@ -5,6 +5,8 @@ export default class FastList extends React.Component{
     constructor(props){
         super(props);
         console.log(props);
+        this.state = {fasts: []};
+        this.getFasts = this.getFasts.bind(this);
     }
 
     componentDidMount(){
@@ -22,11 +24,21 @@ export default class FastList extends React.Component{
             }
         };
         axios.get('http://localhost:5000/fasts/', config)
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res)
+            console.log(res.data);
+            this.setState({fasts: res.data})
+        })
         .catch(err => console.log(err));
     }
 
     render(){
-        return (<h1>Hello fast list</h1>);
+        return (
+        <div>
+            {this.state.fasts.map((fast, i) => 
+            (<li key={i}>
+                Fast: from {fast.startTime} to {fast.endTime}!
+            </li>))}
+        </div>);
     }
 }
