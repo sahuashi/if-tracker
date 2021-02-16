@@ -23,7 +23,7 @@ export default class LogoutUser extends React.Component{
                 username: res.data.msg
             });
             this.props.onChange({
-                id: 100,
+                id: "",
                 isLoggedIn: false,
             })
             console.log(this.props);
