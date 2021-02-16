@@ -6,8 +6,9 @@ export default class FastList extends React.Component{
     constructor(props){
         super(props);
         console.log(props);
-        this.state = {fasts: []};
         this.getFasts = this.getFasts.bind(this);
+        this.deleteFast = this.deleteFast.bind(this);
+        this.state = {fasts: []};
     }
 
     componentDidMount(){
@@ -27,18 +28,24 @@ export default class FastList extends React.Component{
         axios.get('http://localhost:5000/fasts/', config)
         .then(res => {
             console.log(res)
-            console.log(res.data);
             this.setState({fasts: res.data})
         })
         .catch(err => console.log(err));
+    }
+
+    deleteFast(id){
+        axios.delete(`http://localhost:5000/fasts/${id}`)
+        .then(res => {
+            this.setState({fasts: this.state.fasts.filter(fast => fast._id !== id)})
+        });
     }
 
     render(){
         return (
         <div>
             {this.state.fasts.map((fast, i) => (
-            <div key={i}>
-                <Fast start={fast.startTime} end={fast.endTime}/><br/>
+            <div key={fast._id}>
+                <Fast id={fast._id} start={fast.startTime} end={fast.endTime} deleteFast={this.deleteFast}/><br/>
             </div>
             ))}
         </div>

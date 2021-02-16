@@ -1,11 +1,12 @@
 import Moment from 'react-moment';
 import React from 'react';
-import {ProgressBar} from 'react-bootstrap';
+import {ProgressBar, Button} from 'react-bootstrap';
 
 export default class Fast extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            id: this.props.id,
             start: new Date(this.props.start), 
             end: new Date(this.props.end), 
             difference: 0,
@@ -15,6 +16,7 @@ export default class Fast extends React.Component{
         this.getDifference = this.getDifference.bind(this);
         this.getElapsed = this.getElapsed.bind(this);
         this.getProgress = this.getProgress.bind(this);
+        this.deleteFast = this.deleteFast.bind(this);
     }
 
     componentDidMount(){
@@ -40,6 +42,10 @@ export default class Fast extends React.Component{
         this.setState({ progress: progress });
     }
 
+    deleteFast() {
+        this.props.deleteFast(this.state.id);
+    }
+
     render() {
         var progressbar, remainder;
         if(this.state.progress === 100){
@@ -62,6 +68,7 @@ export default class Fast extends React.Component{
             Time left: {remainder}
             <br/>
             {progressbar}
+            <Button onClick={this.deleteFast}>Delete Fast</Button>
         </div>)
     }
 }
