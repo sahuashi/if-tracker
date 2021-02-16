@@ -17,7 +17,7 @@ export default class EditFast extends React.Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:5000/fasts/' + this.props.match.params.id)
+        axios.get(`http://localhost:5000/fasts/${this.props.match.params.id}`)
         .then(res => {
             console.log(res.data);
             this.setState({startdate: new Date(res.data.startTime), enddate: new Date(res.data.endTime)});
@@ -41,8 +41,6 @@ export default class EditFast extends React.Component {
             endTime: this.state.enddate,
             user: this.props.user.id
         };
-
-        console.log(Fast);
 
         axios.post(`http://localhost:5000/fasts/edit/${this.props.match.params.id}`, Fast)
         .then(res => console.log(res.data));

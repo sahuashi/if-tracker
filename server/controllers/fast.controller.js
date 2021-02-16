@@ -34,7 +34,6 @@ export const editFast = (req, res) => {
     .then(fast => {
         fast.startTime = Date.parse(req.body.startTime);
         fast.endTime = Date.parse(req.body.endTime);
-
         fast.save()
         .then(() => res.json('Fast edited!'))
         .catch(err => res.status(400).json('Error: ' + err));

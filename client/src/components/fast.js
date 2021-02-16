@@ -69,8 +69,8 @@ export default class Fast extends React.Component{
             Time left: {remainder}
             <br/>
             {progressbar}
-            <Button onClick={this.deleteFast}>Delete Fast</Button>
-            <Link to={`/fasts/edit/${this.state.id}`}>Edit Fast</Link>
+            <Button variant="outline-danger" onClick={this.deleteFast}>Delete Fast</Button>
+            <Link to={`/fasts/edit/${this.state.id}`}><Button variant="outline-success">Edit Fast</Button></Link>
         </div>)
     }
 }
