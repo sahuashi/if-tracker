@@ -59,13 +59,8 @@ export default class Fast extends React.Component{
             <br/>
             Duration: <Moment duration={this.state.start} date={this.state.end}/>
             <br/>
-            Difference: {this.state.difference}
-            <br/>
-            Time since: <Moment date={this.state.start} durationFromNow/>
-            <br/>
             Time left: {remainder}
             <br/>
-            Progress (%): {this.state.progress}
             {progressbar}
         </div>)
     }
