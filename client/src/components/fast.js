@@ -41,10 +41,15 @@ export default class Fast extends React.Component{
     }
 
     render() {
-        var progressbar;
-        this.state.progress === 100 ?
-        progressbar = <ProgressBar variant="success" striped now={100} label={'100%'}/> :
-        progressbar = <ProgressBar variant="info" animated now={this.state.progress} label={`${this.state.progress}%`} />
+        var progressbar, remainder;
+        if(this.state.progress === 100){
+            progressbar = <ProgressBar variant="success" striped now={100} label={'100%'} />;
+            remainder = 0;
+        }
+        else{
+            progressbar = <ProgressBar variant="info" animated now={this.state.progress} label={`${this.state.progress}%`} />;
+            remainder = <Moment duration={new Date()} date={this.state.end} />;
+        }
 
         return (
         <div>
@@ -57,6 +62,8 @@ export default class Fast extends React.Component{
             Difference: {this.state.difference}
             <br/>
             Time since: <Moment date={this.state.start} durationFromNow/>
+            <br/>
+            Time left: {remainder}
             <br/>
             Progress (%): {this.state.progress}
             {progressbar}
