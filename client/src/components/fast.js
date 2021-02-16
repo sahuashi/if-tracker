@@ -43,12 +43,14 @@ export default class Fast extends React.Component{
     render() {
         var progressbar;
         this.state.progress === 100 ?
-        progressbar = <ProgressBar variant="success" now={100} label={'100%'}/> :
-        progressbar = <ProgressBar animated now={this.state.progress} label={`${this.state.progress}%`} />
+        progressbar = <ProgressBar variant="success" striped now={100} label={'100%'}/> :
+        progressbar = <ProgressBar variant="info" animated now={this.state.progress} label={`${this.state.progress}%`} />
 
         return (
         <div>
-            Start Date: {this.props.start} to End Date: {this.props.end}
+            Start: <Moment format="dddd, MMMM DD, YYYY @ hh:mm A" date={this.state.start}/>
+            <br/>
+            End: <Moment format="dddd, MMMM DD, YYYY @ hh:mm A" date={this.state.end} />
             <br/>
             Duration: <Moment duration={this.state.start} date={this.state.end}/>
             <br/>
