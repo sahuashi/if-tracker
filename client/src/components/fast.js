@@ -1,5 +1,6 @@
 import Moment from 'react-moment';
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {ProgressBar, Button} from 'react-bootstrap';
 
 export default class Fast extends React.Component{
@@ -69,6 +70,7 @@ export default class Fast extends React.Component{
             <br/>
             {progressbar}
             <Button onClick={this.deleteFast}>Delete Fast</Button>
+            <Link to={`/fasts/edit/${this.state.id}`}>Edit Fast</Link>
         </div>)
     }
 }

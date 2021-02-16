@@ -6,6 +6,7 @@ import RegisterUser from "./components/registeruser";
 import LoginUser from "./components/loginuser";
 import MyFasts from "./components/myfasts";
 import AddFast from "./components/addfast";
+import EditFast from "./components/editfast";
 import LogoutUser from "./components/logoutuser";
 
 function App() {
@@ -33,7 +34,8 @@ function App() {
       <Route path="/user/signup" render={(props) => <RegisterUser {...props} user={user} onChange={setUser}/>} />
       <Route path="/user/login" render={(props) => <LoginUser {...props} user={user} onChange={setUser}/>} />
       <Route exact path="/fasts/" render={(props) => <MyFasts {...props} user={user} onChange={setUser}/>} />
-      <Route path="/fasts/add" render={(props) => <AddFast {...props} user={user} />} onChange={setUser}/>
+      <Route exact path="/fasts/add" render={(props) => <AddFast {...props} user={user} onChange={setUser}/>} />
+      <Route exact path="/fasts/edit/:id" render={(props) => <EditFast {...props} user={user} onChange={setUser}/>} />
       <Route path="/user/logout" render={(props) => <LogoutUser {...props} user={user} onChange={setUser}/>} />
     </Router>
   );
