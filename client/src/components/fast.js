@@ -1,6 +1,6 @@
 import Moment from 'react-moment';
 import React from 'react';
-import {ProgressBar, Button, Card} from 'react-bootstrap';
+import {ProgressBar, Button, Card, ButtonGroup, Row, Col} from 'react-bootstrap';
 
 export default class Fast extends React.Component{
     constructor(props){
@@ -59,18 +59,26 @@ export default class Fast extends React.Component{
 
         return (
         <div>
-            <Card>
-            Start: <Moment format="dddd, MMMM DD, YYYY @ hh:mm A" date={this.state.start}/>
-            <br/>
-            End: <Moment format="dddd, MMMM DD, YYYY @ hh:mm A" date={this.state.end} />
-            <br/>
-            Duration: <Moment duration={this.state.start} date={this.state.end}/>
-            <br/>
-            Time left: {remainder}
-            <br/>
-            {progressbar}
-            <Button variant="outline-danger" onClick={this.deleteFast}>Delete Fast</Button>
-            <Button variant="outline-success" onClick={()=> {this.props.history.replace(`/fasts/edit/${this.state.id}`)}}>Edit Fast</Button>
+            <Card className="text-center" border="info" >
+                <Card.Body>
+                    <Row>
+                        <Col>Fast Start: <Moment format="dddd, MMMM DD, YYYY @ hh:mm A" date={this.state.start}/></Col>
+                        <Col>Fast End: <Moment format="dddd, MMMM DD, YYYY @ hh:mm A" date={this.state.end} /></Col>
+                    </Row>
+                    <hr></hr>
+                    {progressbar}
+                    <hr></hr>
+                    <Row>
+                        <Col>Total Duration: <Moment duration={this.state.start} date={this.state.end}/></Col>
+                        <Col> 
+                            <ButtonGroup>
+                                <Button variant="outline-success" onClick={()=> {this.props.history.replace(`/fasts/edit/${this.state.id}`)}}>Edit Fast</Button>
+                                <Button variant="outline-danger" onClick={this.deleteFast}>Delete Fast</Button>
+                            </ButtonGroup>
+                        </Col>
+                        <Col>Time left: {remainder}</Col>
+                    </Row>
+                </Card.Body>
             </Card>
         </div>)
     }
