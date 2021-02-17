@@ -29,7 +29,6 @@ function App() {
           <Nav className="mr-auto">
             <Link className="nav-link" to="/" >Home</Link>
             <Link className="nav-link" to="/fasts/" >My Fasts</Link>
-            {user.isLoggedIn && <Link className="nav-link" to="/fasts/add">Add Fast</Link>}
             <NavDropdown title="Account" id="basic-nav-dropdown">
               {!user.isLoggedIn && <Link className="nav-link" to="/user/signup">Register User</Link>}
               {!user.isLoggedIn && <Link className="nav-link" to="/user/login">Login User</Link>}

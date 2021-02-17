@@ -12,10 +12,8 @@ export default class MyFasts extends React.Component {
     render() {
         return (
             <div>
-            {this.props.user.isLoggedIn && <div>
-                <h1>List of Fasts:</h1> <br/>
-                <FastList user={this.props.user} history={this.props.history}></FastList>
-                </div>}
+            {this.props.user.isLoggedIn &&
+                <FastList user={this.props.user} history={this.props.history}></FastList>}
             {!this.props.user.isLoggedIn && <div> 
                 <h1>You must log in to view your fasts!</h1>
                 <Button variant="info" href='/user/signup'>Signup</Button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Fast from './fast';
+import { Badge, Button } from 'react-bootstrap';
 
 export default class FastList extends React.Component{
     constructor(props){
@@ -43,6 +44,9 @@ export default class FastList extends React.Component{
     render(){
         return (
         <div>
+            <div className="mt-3 mb-3">
+            <h4 className="text-center d-inline">Logged Fasts <Badge pill variant="info">{this.state.fasts.length}</Badge></h4>
+            <Button variant="info" className="d-inline float-right" onClick={()=> {this.props.history.replace("/fasts/add")}}>Add Fast</Button></div>
             {this.state.fasts.map((fast, i) => (
             <div key={fast._id}>
                 <Fast id={fast._id} 

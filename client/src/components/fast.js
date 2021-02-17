@@ -69,14 +69,14 @@ export default class Fast extends React.Component{
                     {progressbar}
                     <hr></hr>
                     <Row>
-                        <Col>Total Duration: <Moment duration={this.state.start} date={this.state.end}/></Col>
+                        <Col className="text-muted">Total Duration: <Moment duration={this.state.start} date={this.state.end}/></Col>
                         <Col> 
                             <ButtonGroup>
                                 <Button variant="outline-success" onClick={()=> {this.props.history.replace(`/fasts/edit/${this.state.id}`)}}>Edit Fast</Button>
                                 <Button variant="outline-danger" onClick={this.deleteFast}>Delete Fast</Button>
                             </ButtonGroup>
                         </Col>
-                        <Col>Time left: {remainder}</Col>
+                        <Col className="text-muted">Time left: {remainder}</Col>
                     </Row>
                 </Card.Body>
             </Card>
