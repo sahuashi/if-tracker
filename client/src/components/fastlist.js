@@ -52,6 +52,7 @@ export default class FastList extends React.Component{
                 history={this.props.history}/><br/>
             </div>
             ))}
+            {!this.state.fasts.length && <div>No fasts to display.</div>}
         </div>
         );
     }
