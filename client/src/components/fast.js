@@ -1,7 +1,6 @@
 import Moment from 'react-moment';
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {ProgressBar, Button} from 'react-bootstrap';
+import {ProgressBar, Button, Card} from 'react-bootstrap';
 
 export default class Fast extends React.Component{
     constructor(props){
@@ -60,6 +59,7 @@ export default class Fast extends React.Component{
 
         return (
         <div>
+            <Card>
             Start: <Moment format="dddd, MMMM DD, YYYY @ hh:mm A" date={this.state.start}/>
             <br/>
             End: <Moment format="dddd, MMMM DD, YYYY @ hh:mm A" date={this.state.end} />
@@ -70,7 +70,8 @@ export default class Fast extends React.Component{
             <br/>
             {progressbar}
             <Button variant="outline-danger" onClick={this.deleteFast}>Delete Fast</Button>
-            <Link to={`/fasts/edit/${this.state.id}`}><Button variant="outline-success">Edit Fast</Button></Link>
+            <Button variant="outline-success" onClick={()=> {this.props.history.replace(`/fasts/edit/${this.state.id}`)}}>Edit Fast</Button>
+            </Card>
         </div>)
     }
 }

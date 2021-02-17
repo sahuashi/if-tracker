@@ -13,8 +13,8 @@ export default class MyFasts extends React.Component {
         return (
             <div>
             {this.props.user.isLoggedIn && <div>
-                <h1>Fasts List!</h1> <br/>
-                <FastList user={this.props.user}></FastList>
+                <h1>List of Fasts:</h1> <br/>
+                <FastList user={this.props.user} history={this.props.history}></FastList>
                 </div>}
             {!this.props.user.isLoggedIn && <div> 
                 <h1>You must log in to view your fasts!</h1>

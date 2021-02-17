@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RegisterUser from "./components/registeruser";
 import LoginUser from "./components/loginuser";
@@ -21,6 +21,7 @@ function App() {
 
   return (
     <Router>
+      <Container fluid>
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="/">SixteenAte: Fasting Tracker</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -40,6 +41,7 @@ function App() {
       <Route exact path="/fasts/add" render={(props) => <AddFast {...props} user={user} onChange={setUser}/>} />
       <Route exact path="/fasts/edit/:id" render={(props) => <EditFast {...props} user={user} onChange={setUser}/>} />
       <Route path="/user/logout" render={(props) => <LogoutUser {...props} user={user} onChange={setUser}/>} />
+      </Container>
     </Router>
   );
 }
