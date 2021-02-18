@@ -53,13 +53,13 @@ export default class Fast extends React.Component{
             remainder = 0;
         }
         else{
-            progressbar = <ProgressBar variant="info" animated now={this.state.progress} label={`${this.state.progress}%`} />;
+            progressbar = <ProgressBar variant="warning" animated now={this.state.progress} label={`${this.state.progress}%`} />;
             remainder = <Moment duration={new Date()} date={this.state.end} />;
         }
 
         return (
         <div>
-            <Card className="text-center" border="info" >
+            <Card className="text-center" border="secondary" >
                 <Card.Body>
                     <Row>
                         <Col>Fast Start: <Moment format="dddd, MMMM DD, YYYY @ hh:mm A" date={this.state.start}/></Col>
