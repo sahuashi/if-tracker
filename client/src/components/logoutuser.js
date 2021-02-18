@@ -18,7 +18,6 @@ export default class LogoutUser extends React.Component{
           };
         axios.get('http://localhost:5000/user/logout', config)
         .then(res => {
-            console.log(res);
             this.setState({
                 username: res.data.msg
             });
@@ -26,7 +25,7 @@ export default class LogoutUser extends React.Component{
                 id: "",
                 isLoggedIn: false,
             })
-            console.log(this.props);
+            this.props.history.replace('/fasts/');
         })
         .catch(err => {console.log(err)})
     }
@@ -34,7 +33,6 @@ export default class LogoutUser extends React.Component{
     render(){
         return (
             <div>
-            <h1>Logout Screen</h1>
             { this.state.username && <Alert variant="success"> Successfully logged out, {this.state.username}</Alert>}
             </div>
         );

@@ -70,8 +70,8 @@ export default class LoginUser extends React.Component{
     render(){
         return (
             <div className="text-center">
-            { this.state.error && <Alert variant="danger"> {this.state.error} </Alert>}
             <h3 className="mt-3 mb-3">Login User</h3>
+            { this.state.error && <Alert variant="danger"> {this.state.error} </Alert>}
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Control type="text" 

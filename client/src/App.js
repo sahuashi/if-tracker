@@ -28,7 +28,6 @@ function App() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Link className="nav-link" to="/" >Home</Link>
             <Link className="nav-link" to="/fasts/" >My Fasts</Link>
             <NavDropdown title="Account" id="basic-nav-dropdown">
               {!user.isLoggedIn && <Link className="nav-link" to="/user/signup">Register User</Link>}

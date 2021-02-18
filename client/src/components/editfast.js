@@ -43,7 +43,7 @@ export default class EditFast extends React.Component {
         };
 
         axios.post(`http://localhost:5000/fasts/edit/${this.props.match.params.id}`, Fast)
-        .then(res => console.log(res.data));
+        .then(this.props.history.replace("/fasts/"));
 
     }
 
