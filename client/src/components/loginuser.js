@@ -1,13 +1,12 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios'
 
 export default class LoginUser extends React.Component{
 
     constructor(props){
         super(props);
-        console.log(this.props);
-        this.state = { username: '', password: '' }
+        this.state = { username: '', password: '' , error: ''}
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,7 +31,11 @@ export default class LoginUser extends React.Component{
         axios.post('http://localhost:5000/user/login', User, { withCredentials: true})
         .then(res => {
             if(res.data.route === 'signup'){
-                window.location = '/user/signup';
+                this.setState({
+                    username: '',
+                    password: '',
+                    error: "Incorrect username/password. Please try again."
+                });
             }
             else{
                 this.auth();
@@ -61,13 +64,14 @@ export default class LoginUser extends React.Component{
             id: id,
             isLoggedIn: true,
         })
-        this.props.history.push('/fasts');
+        this.props.history.replace('/fasts');
     }
     
     render(){
         return (
-            <div>
-            <h1>Login User!</h1>
+            <div className="text-center">
+            { this.state.error && <Alert variant="danger"> {this.state.error} </Alert>}
+            <h3 className="mt-3 mb-3">Login User</h3>
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Control type="text" 

@@ -14,10 +14,11 @@ export default class MyFasts extends React.Component {
             <div>
             {this.props.user.isLoggedIn &&
                 <FastList user={this.props.user} history={this.props.history}></FastList>}
-            {!this.props.user.isLoggedIn && <div> 
-                <h1>You must log in to view your fasts!</h1>
-                <Button variant="info" href='/user/signup'>Signup</Button>
-                <Button variant="info" href='/user/login'>Login</Button></div>}
+            {!this.props.user.isLoggedIn && 
+                <div className="text-center">
+                <h3 className="mt-3">You must create an account or login to add and view your fasts.</h3>
+                <Button className="mx-3 my-3" variant="info" href='/user/signup'>Signup</Button>
+                <Button className="mx-3 my-3" variant="info" href='/user/login'>Login</Button></div>}
             </div>
         );
     }

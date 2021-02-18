@@ -36,8 +36,8 @@ export default class AddFast extends React.Component {
         console.log(Fast);
 
         axios.post('http://localhost:5000/fasts/add', Fast)
-        .then(res => {
-            console.log(res.data);})
+        .then(res => {this.props.history.replace("/fasts/")})
+            
 
     }
     render() {
@@ -46,11 +46,11 @@ export default class AddFast extends React.Component {
                 <h1 className="mt-3 mb-3">Add Fast</h1>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
-                        <Form.Label className="mx-2">Start Date: </Form.Label>
+                        <Form.Label className="mx-2">Fast Start: </Form.Label>
                         <DateTimePicker value={this.state.startdate} onChange={this.handleStartDateChange}/>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label className="mx-2">End Date: </Form.Label>
+                        <Form.Label className="mx-2">Fast End: </Form.Label>
                         <DateTimePicker value={this.state.enddate} onChange={this.handleEndDateChange}/>
                     </Form.Group>
                     <Button variant="info" type="submit">Submit</Button>
