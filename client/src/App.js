@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Sun } from 'react-feather';
 import RegisterUser from "./components/registeruser";
 import LoginUser from "./components/loginuser";
 import MyFasts from "./components/myfasts";
 import AddFast from "./components/addfast";
 import EditFast from "./components/editfast";
 import LogoutUser from "./components/logoutuser";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   
@@ -23,7 +24,7 @@ function App() {
     <Router>
       <Container fluid>
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand>SixteenAte: Fasting Tracker</Navbar.Brand>
+        <Navbar.Brand><Sun width="17" height="17"/> SixteenAte: Fasting Tracker</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">

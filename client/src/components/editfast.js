@@ -49,21 +49,19 @@ export default class EditFast extends React.Component {
 
     render() {
         return (
-            <div>
-            <h1>Edit Fast!</h1>
-            <Form onSubmit={this.handleSubmit}>
-                <Form.Group>
-                    <div>
-                    <Form.Label>Start Date: </Form.Label>
-                    <DateTimePicker value={this.state.startdate} onChange={this.handleStartDateChange}/>
-                    </div>
-                    <div>
-                    <Form.Label>End Date: </Form.Label>
-                    <DateTimePicker value={this.state.enddate} onChange={this.handleEndDateChange}/>
-                    </div>
-                </Form.Group>
-                <Button variant="primary" type="submit">Submit</Button>
-            </Form>
+            <div className="text-center">
+                <h1 className="mt-3 mb-3">Edit Fast</h1>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Group>
+                        <Form.Label className="mx-2">Fast Start: </Form.Label>
+                        <DateTimePicker value={this.state.startdate} onChange={this.handleStartDateChange}/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label className="mx-2">Fast End: </Form.Label>
+                        <DateTimePicker value={this.state.enddate} onChange={this.handleEndDateChange}/>
+                    </Form.Group>
+                    <Button variant="info" type="submit">Submit</Button>
+                </Form>
             </div>
         );
     }
