@@ -1,17 +1,18 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import {Alert, Button} from 'react-bootstrap';
 import FastList from './fastlist';
 
 export default class MyFasts extends React.Component {
 
     constructor(props){
         super(props);
-        console.log(this.props);
+        this.state = {msg: this.props.location.data? this.props.location.data.msg : ''};
     }
 
     render() {
         return (
             <div>
+            { this.state.msg && <Alert className="text-center" variant="success">{this.state.msg}</Alert>}
             {this.props.user.isLoggedIn &&
                 <FastList user={this.props.user} history={this.props.history}></FastList>}
             {!this.props.user.isLoggedIn && 
