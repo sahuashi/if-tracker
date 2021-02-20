@@ -1,5 +1,6 @@
 import express from 'express';
 import { register, login, logout, checkAuthentication} from '../controllers/user.controller.js'
+
 var router = express.Router()
 
 router.post('/signup', register);

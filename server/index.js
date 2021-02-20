@@ -13,8 +13,10 @@ import userRouter from './routes/user.js'
 dotenv.config();
 
 const app = express();
+
 const port = process.env.PORT || 5000;
 
+// set up connection to front-end
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
@@ -22,6 +24,8 @@ app.use(cors({
 app.use(express.json());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
+
+// set up passport
 app.use(session({
     secret: 'secret-token',
     resave: false,
@@ -29,7 +33,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-//passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 passport.use(new Strategy(User.authenticate()));
@@ -38,8 +41,8 @@ passport.use(new Strategy(User.authenticate()));
 app.use('/fasts', fastsRouter);
 app.use('/user', userRouter);
 
+// set up mongoDB connection
 const mongo = process.env.MONGO_URI;
-
 mongoose.connect(mongo, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false , useCreateIndex: true})
     .then(() => app.listen(port, () =>
         console.log(`MongoDB connected and server is running on port: ${port}`)))
