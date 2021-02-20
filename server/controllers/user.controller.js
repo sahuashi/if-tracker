@@ -12,7 +12,6 @@ export const register = (req, res) => {
         err.status = 404;
         return res.send(err);
       }
-
       return res.sendStatus(200);
     }
   );
@@ -20,7 +19,7 @@ export const register = (req, res) => {
 
 export const login = passport.authenticate("local", {
   successRedirect: "/fasts/",
-  failureRedirect: "/user/signup",
+  failureRedirect: "/user/login",
 });
 
 export const logout = (req, res) => {
@@ -32,15 +31,10 @@ export const logout = (req, res) => {
       msg: username,
     });
   }
-  //res.send("unauth/noone is logged in");
 };
 
 export const checkAuthentication = (req, res) => {
   if (req.user || req.isAuthenticated()) {
     return res.send(req.user);
   }
-  return res.json({
-    status: "unauth",
-    msg: "not authorized",
-  });
 };

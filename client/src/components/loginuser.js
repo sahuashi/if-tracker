@@ -34,7 +34,7 @@ export default class LoginUser extends React.Component{
         
         axios.post('http://localhost:5000/user/login', User, { withCredentials: true})
         .then(res => {
-            if(res.data.route === 'signup'){
+            if(res.data.msg === 'login'){
                 this.setState({
                     username: '',
                     password: '',
