@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { Sun } from 'react-feather';
 import RegisterUser from "./components/registeruser";
@@ -37,6 +37,7 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      <Route exact path="/"><Redirect to="/fasts"/></Route>
       <Route path="/user/signup" render={(props) => <RegisterUser {...props} user={user} onChange={setUser}/>} />
       <Route path="/user/login" render={(props) => <LoginUser {...props} user={user} onChange={setUser}/>} />
       <Route exact path="/fasts/" render={(props) => <MyFasts {...props} user={user} onChange={setUser}/>} />

@@ -69,7 +69,7 @@ export default class Fast extends React.Component{
                     {progressbar}
                     <hr></hr>
                     <Row>
-                        <Col className="text-muted">Total Duration: <Moment duration={this.state.start} date={this.state.end}/></Col>
+                        <Col className="text-muted">Total duration: <Moment duration={this.state.start} date={this.state.end}/></Col>
                         <Col> 
                             <ButtonGroup>
                                 <Button variant="outline-success" onClick={()=> {this.props.history.replace(`/fasts/edit/${this.state.id}`)}}>Edit Fast</Button>

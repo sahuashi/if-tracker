@@ -43,16 +43,13 @@ export default class RegisterUser extends React.Component{
                     password: '',
                     error: res.data.message + ". Please try again."
                 });
-                this.props.onChange({
-                    id: 404,
-                    isLoggedIn: false,
-                })
-                console.log(this.props);
             }
             else{
-                this.props.user.id=200;
-                console.log(this.props);
-                window.location = "/user/login"
+                this.props.history.replace({
+                    pathname: "/user/login",
+                    data: {
+                        msg: "User successfully registered! Please login to continue."
+                    }});
             }
         })
     }

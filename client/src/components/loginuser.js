@@ -6,7 +6,11 @@ export default class LoginUser extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = { username: '', password: '' , error: ''}
+        this.state = { 
+            username: '', 
+            password: '' , 
+            error: '', 
+            msg: this.props.location.data? this.props.location.data.msg : '' }
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -72,6 +76,7 @@ export default class LoginUser extends React.Component{
             <div className="text-center">
             <h3 className="mt-3 mb-3">Login User</h3>
             { this.state.error && <Alert variant="danger"> {this.state.error} </Alert>}
+            { (!this.state.error && this.state.msg) && <Alert variant="success"> {this.state.msg}</Alert>}
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Control type="text" 
