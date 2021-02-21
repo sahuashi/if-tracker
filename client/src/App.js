@@ -23,7 +23,7 @@ function App() {
   return (
     <Router>
       <Container fluid>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="white" expand="lg">
         <Navbar.Brand><Sun width="17" height="17"/> SixteenAte: Fasting Tracker</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
