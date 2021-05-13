@@ -10,14 +10,14 @@ export default class LogoutUser extends React.Component{
               'Content-Type': 'application/json',
             },
           };
-        axios.get('http://localhost:5000/user/logout', config)
+        axios.get('/user/logout', config)
         .then(res => {
             this.props.onChange({
                 id: "",
                 isLoggedIn: false,
             })
             this.props.history.replace({
-                pathname: '/fasts/',
+                pathname: '/',
                 data: { msg: `Successfully logged out, ${res.data.msg}!` }});
         })
         .catch(err => {console.log(err)})

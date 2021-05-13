@@ -1,22 +1,23 @@
 import React from 'react';
 import axios from 'axios';
 import Fast from './fast';
-import { Badge, Button } from 'react-bootstrap';
+import InfoPanel from './infopanel'
+import { Button, Card, Grid, Header, Icon, Segment, Label } from 'semantic-ui-react'
 
-export default class FastList extends React.Component{
-    constructor(props){
+export default class FastList extends React.Component {
+    constructor(props) {
         super(props);
-        console.log(props);
         this.getFasts = this.getFasts.bind(this);
         this.deleteFast = this.deleteFast.bind(this);
-        this.state = {fasts: []};
+        this.updatePanel = this.updatePanel.bind(this);
+        this.state = { fasts: [], selected: null, progress: 0 };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getFasts();
     }
 
-    getFasts(){
+    getFasts() {
         const config = {
             withCredentials: true,
             headers: {
@@ -26,38 +27,61 @@ export default class FastList extends React.Component{
                 id: this.props.user.id
             }
         };
-        axios.get('http://localhost:5000/fasts/', config)
-        .then(res => {
-            console.log(res)
-            this.setState({fasts: res.data})
-        })
-        .catch(err => console.log(err));
+        axios.get('/fasts/', config)
+            .then(res => {
+                this.setState({ fasts: res.data })
+            })
+            .catch(err => console.log(err));
     }
 
-    deleteFast(id){
-        axios.delete(`http://localhost:5000/fasts/${id}`)
-        .then(res => {
-            this.setState({fasts: this.state.fasts.filter(fast => fast._id !== id)})
-        });
+    deleteFast(id) {
+        axios.delete(`/fasts/${id}`)
+            .then(res => {
+                this.setState({ fasts: this.state.fasts.filter(fast => fast._id !== id) });
+                if (this.state.selected._id === id) {
+                    this.setState({ fasts: this.state.fasts, selected: null })
+                }
+            });
     }
 
-    render(){
+    updatePanel(id, progress) {
+        this.setState({ fasts: this.state.fasts, selected: this.state.fasts.find(fast => fast._id === id), progress: progress });
+    }
+
+    render() {
         return (
-        <div>
-            <div className="mt-3 mb-3">
-            <h4 className="text-center d-inline">Logged Fasts <Badge pill variant="info">{this.state.fasts.length}</Badge></h4>
-            <Button variant="info" className="d-inline float-right" onClick={()=> {this.props.history.replace("/fasts/add")}}>Add Fast</Button></div>
-            {this.state.fasts.map((fast, i) => (
-            <div key={fast._id}>
-                <Fast id={fast._id} 
-                start={fast.startTime} 
-                end={fast.endTime} 
-                deleteFast={this.deleteFast} 
-                history={this.props.history}/><br/>
+            <div>
+                <Grid columns={2} textAlign='center'>
+                    <Grid.Row verticalAlign='middle' style={{ 'justifyContent': 'flex-start'}}>
+                        <Grid.Column width='11'>
+                            <Segment vertical style={{ overflow: 'auto', maxHeight: '100vh' }}>
+                                <Button basic color="olive" icon onClick={() => { this.props.history.replace("/add") }}><Icon name="add"/></Button>
+                                <Header as="h3" style={{display: 'inline-block', marginLeft: '5px'}}>Logged Fasts <Label circular color='olive'>{this.state.fasts.length}</Label></Header>
+                                <Card.Group stackable centered style={{ margin: '.875em .5em' }}>
+                                    {this.state.fasts.map((fast, i) => (
+                                        <div key={fast._id}>
+                                            <Fast id={fast._id}
+                                                start={fast.startTime}
+                                                end={fast.endTime}
+                                                index={i}
+                                                updatePanel={this.updatePanel} /><br />
+                                        </div>
+                                    ))}
+                                </Card.Group>
+                                {!this.state.fasts.length && <div>No fasts to display.</div>}
+                            </Segment>
+                        </Grid.Column>
+                        <Grid.Column width='3' style={{ 'paddingRight': 0, 'paddingLeft': 0 }}>
+                            <Segment color="olive" vertical raised style={{ overflow: 'auto', height: '100vh' }} id="sidebar">
+                                <InfoPanel fast={this.state.selected}
+                                           progress={this.state.progress}
+                                           deleteFast={this.deleteFast}
+                                           history={this.props.history}/>
+                            </Segment>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
             </div>
-            ))}
-            {!this.state.fasts.length && <div>No fasts to display.</div>}
-        </div>
         );
     }
 }

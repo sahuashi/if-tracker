@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import {Form, Input, Message, Button} from 'semantic-ui-react';
 import axios from 'axios'
 
 export default class LoginUser extends React.Component{
@@ -32,7 +32,7 @@ export default class LoginUser extends React.Component{
             password: this.state.password
         };
         
-        axios.post('http://localhost:5000/user/login', User, { withCredentials: true})
+        axios.post('/user/login', User, { withCredentials: true})
         .then(res => {
             if(res.data.msg === 'login'){
                 this.setState({
@@ -55,9 +55,8 @@ export default class LoginUser extends React.Component{
                 'Content-Type': 'application/json',
             },
         };
-        axios.get('http://localhost:5000/user/auth', config)
+        axios.get('/user/auth', config)
             .then(res => {
-                console.log(res.data._id);
                 id = res.data._id;
                 this.update(id);
             })
@@ -68,29 +67,32 @@ export default class LoginUser extends React.Component{
             id: id,
             isLoggedIn: true,
         })
-        this.props.history.replace('/fasts');
+        this.props.history.replace('/');
     }
     
     render(){
         return (
-            <div className="text-center">
-            <h3 className="mt-3 mb-3">Login User</h3>
-            { this.state.error && <Alert variant="danger"> {this.state.error} </Alert>}
-            { (!this.state.error && this.state.msg) && <Alert variant="success"> {this.state.msg}</Alert>}
-            <Form onSubmit={this.handleSubmit}>
-                <Form.Group>
-                    <Form.Control type="text" 
-                    placeholder="Username" 
-                    value={this.state.username} 
-                    onChange={this.handleUsernameChange}/>
-                    <br/>
-                    <Form.Control type="password" 
-                    placeholder="Password" 
-                    value={this.state.password} 
-                    onChange={this.handlePasswordChange}/>
-                </Form.Group>
-                <Button variant="primary" type="submit">Submit</Button>
-            </Form>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '85%' }}>
+            <h3>Login</h3>
+            { this.state.error && <Message error> {this.state.error} </Message>}
+            { (!this.state.error && this.state.msg) && <Message success> {this.state.msg}</Message>}
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Field>
+                        <label>Username</label>
+                        <Input type="text"
+                            placeholder="Username"
+                            value={this.state.username}
+                            onChange={this.handleUsernameChange} />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Password</label>
+                        <Input type="password"
+                            placeholder="Password"
+                            value={this.state.password}
+                            onChange={this.handlePasswordChange} />
+                    </Form.Field>
+                    <Button color="olive" type="submit">Login</Button>
+                </Form>
             </div>
         );
     }

@@ -1,14 +1,13 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Button, Form } from 'semantic-ui-react';
 import DateTimePicker from 'react-datetime-picker'
 import axios from 'axios';
 
 export default class AddFast extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
         this.state = {
-            startdate: new Date(), 
+            startdate: new Date(),
             enddate: new Date()
         };
         this.handleStartDateChange = this.handleStartDateChange.bind(this);
@@ -33,28 +32,27 @@ export default class AddFast extends React.Component {
             user: this.props.user.id
         };
 
-        console.log(Fast);
 
-        axios.post('http://localhost:5000/fasts/add', Fast)
-        .then(res => {this.props.history.replace("/fasts/")})
-            
+        axios.post('/fasts/add', Fast)
+            .then(res => { this.props.history.replace("/") })
+
 
     }
     render() {
         return (
-            <div className="text-center">
-                <h1 className="mt-3 mb-3">Add Fast</h1>
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Group>
-                        <Form.Label className="mx-2">Fast Start: </Form.Label>
-                        <DateTimePicker value={this.state.startdate} onChange={this.handleStartDateChange}/>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label className="mx-2">Fast End: </Form.Label>
-                        <DateTimePicker value={this.state.enddate} onChange={this.handleEndDateChange}/>
-                    </Form.Group>
-                    <Button variant="info" type="submit">Submit</Button>
-                </Form>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '85%' }}>
+                <h1>Add Fast</h1>
+                <form onSubmit={this.handleSubmit}>
+                    <Form.Field style={{marginBottom: '10px'}}>
+                        <label>Fast Start: </label>
+                        <DateTimePicker value={this.state.startdate} onChange={this.handleStartDateChange} />
+                    </Form.Field>
+                    <Form.Field style={{marginBottom: '10px'}}>
+                        <label>Fast End: </label>
+                        <DateTimePicker value={this.state.enddate} onChange={this.handleEndDateChange} />
+                    </Form.Field>
+                    <Button color="olive" type="submit">Add Fast</Button>
+                </form>
             </div>
         );
     }

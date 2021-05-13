@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+a, a:hover{
+  color: #000000;
+  text-decoration: none;
+}
+
+#selectmsg {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  opacity: 0.4;
+}
+
+form{
+  text-align: center;
+}
+
+h1, h2, h3, h4, #cardbody, #detail {
+  color: #283618!important
+}
+
+#navitem,h5{
+  color: #BC6C25
+}
+
+#sidebar{
+  background: #fdfbfb;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom right, #fdfbfb,#ebedee);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom right, #fdfbfb,#ebedee); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border: none
+}
+

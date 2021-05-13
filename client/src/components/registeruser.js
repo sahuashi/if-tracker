@@ -1,30 +1,27 @@
 import React from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Button, Input, Form, Message } from 'semantic-ui-react';
 import axios from 'axios';
 
-export default class RegisterUser extends React.Component{
-    
-    constructor(props){
+export default class RegisterUser extends React.Component {
+
+    constructor(props) {
         super(props);
-        console.log(this.props);
-        this.state = { username: '', password: '' , error: ''};
+        this.state = { username: '', password: '', error: '' };
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
-        console.log(this.props.user.id);
-        console.log(this.props.user.isLoggedIn);
     }
 
     handleUsernameChange(event) {
-        this.setState({username: event.target.value});
+        this.setState({ username: event.target.value });
     }
 
     handlePasswordChange(event) {
-        this.setState({password: event.target.value});
+        this.setState({ password: event.target.value });
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
         event.preventDefault();
 
         const User = {
@@ -32,47 +29,49 @@ export default class RegisterUser extends React.Component{
             password: this.state.password
         };
 
-        console.log(User);
 
-        axios.post('http://localhost:5000/user/signup', User)
-        .then(res => {
-            console.log(res.data);
-            if(res.data.status === 404){
-                this.setState({
-                    username: '',
-                    password: '',
-                    error: res.data.message + ". Please try again."
-                });
-            }
-            else{
-                this.props.history.replace({
-                    pathname: "/user/login",
-                    data: {
-                        msg: "User successfully registered! Please login to continue."
-                    }});
-            }
-        })
+        axios.post('/user/signup', User)
+            .then(res => {
+                if (res.data.status === 404) {
+                    this.setState({
+                        username: '',
+                        password: '',
+                        error: res.data.message + ". Please try again."
+                    });
+                }
+                else {
+                    this.props.history.replace({
+                        pathname: "/login",
+                        data: {
+                            msg: "User successfully registered! Please login to continue."
+                        }
+                    });
+                }
+            })
     }
 
-    render(){
+    render() {
         return (
-            <div className="text-center">
-            <h3 className="mt-3 mb-3">Register User</h3>
-            { this.state.error && <Alert variant="danger"> {this.state.error} </Alert>}
-            <Form onSubmit={this.handleSubmit}>
-                <Form.Group>
-                    <Form.Control type="text" 
-                    placeholder="Username" 
-                    value={this.state.username} 
-                    onChange={this.handleUsernameChange}/>
-                    <br/>
-                    <Form.Control type="password" 
-                    placeholder="Password" 
-                    value={this.state.password} 
-                    onChange={this.handlePasswordChange}/>
-                </Form.Group>
-                <Button variant="primary" type="submit">Submit</Button>
-            </Form>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '85%' }}>
+                <h3>Create Account</h3>
+                { this.state.error && <Message error> {this.state.error} </Message>}
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Field>
+                        <label>Username</label>
+                        <Input type="text"
+                            placeholder="Username"
+                            value={this.state.username}
+                            onChange={this.handleUsernameChange} />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Password</label>
+                        <Input type="password"
+                            placeholder="Password"
+                            value={this.state.password}
+                            onChange={this.handlePasswordChange} />
+                    </Form.Field>
+                    <Button style={{backgroundColor: '#DDA15E', color: 'white'}} type="submit">Register</Button>
+                </Form>
             </div>
         );
     }
