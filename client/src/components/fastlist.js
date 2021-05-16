@@ -72,7 +72,7 @@ export default class FastList extends React.Component {
                             </Segment>
                         </Grid.Column>
                         <Grid.Column width='3' style={{ 'paddingRight': 0, 'paddingLeft': 0 }}>
-                            <Segment color="olive" vertical raised style={{ overflow: 'auto', height: '100vh' }} id="sidebar">
+                            <Segment color="olive" vertical raised style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%', overflow: 'auto', height: '100vh' }} id="sidebar">
                                 <InfoPanel fast={this.state.selected}
                                            progress={this.state.progress}
                                            deleteFast={this.deleteFast}

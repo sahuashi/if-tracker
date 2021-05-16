@@ -33,7 +33,7 @@ export default class InfoPanel extends React.Component {
         return (
             <div>
                 <h3>Details</h3>
-                {!this.props.fast && <Header as='h4' color="brown" id="selectmsg">Select a fast to view more information.</Header>}
+                {!this.props.fast && <Header as='h4' color="brown" style={{opacity: 0.4 }}>Select a fast to view more information.</Header>}
                 {this.props.fast && <div>
                     <h5><Icon name="calendar outline" />Start: </h5><p id="detail"><Moment format="dddd, MMMM DD @ hh:mm A" date={new Date(this.props.fast.startTime)} /></p>
                     <h5><Icon name="calendar check outline" />End: </h5><p id="detail"><Moment format="dddd, MMMM DD @ hh:mm A" date={new Date(this.props.fast.endTime)} /></p>
