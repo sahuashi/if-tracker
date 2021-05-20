@@ -1,50 +1,51 @@
 import React from 'react';
-import {Form, Input, Message, Button} from 'semantic-ui-react';
+import { Form, Input, Message, Button } from 'semantic-ui-react';
 import axios from 'axios'
 
-export default class LoginUser extends React.Component{
+export default class LoginUser extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = { 
-            username: '', 
-            password: '' , 
-            error: '', 
-            msg: this.props.location.data? this.props.location.data.msg : '' }
+        this.state = {
+            username: '',
+            password: '',
+            error: '',
+            msg: this.props.location.data ? this.props.location.data.msg : ''
+        }
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleUsernameChange(event) {
-        this.setState({username: event.target.value});
+        this.setState({ username: event.target.value });
     }
 
     handlePasswordChange(event) {
-        this.setState({password: event.target.value});
+        this.setState({ password: event.target.value });
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
         event.preventDefault();
 
         const User = {
             username: this.state.username,
             password: this.state.password
         };
-        
-        axios.post('/user/login', User, { withCredentials: true})
-        .then(res => {
-            if(res.data.msg === 'login'){
-                this.setState({
-                    username: '',
-                    password: '',
-                    error: "Incorrect username/password. Please try again."
-                });
-            }
-            else{
-                this.auth();
-            }
-        })
+
+        axios.post('/user/login', User, { withCredentials: true })
+            .then(res => {
+                if (res.data.msg === 'login') {
+                    this.setState({
+                        username: '',
+                        password: '',
+                        error: "Incorrect username/password. Please try again."
+                    });
+                }
+                else {
+                    this.auth();
+                }
+            })
     }
 
     auth() {
@@ -62,20 +63,20 @@ export default class LoginUser extends React.Component{
             })
     }
 
-    update(id){
+    update(id) {
         this.props.onChange({
             id: id,
             isLoggedIn: true,
         })
         this.props.history.replace('/');
     }
-    
-    render(){
+
+    render() {
         return (
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '85%' }}>
-            <h3>Login</h3>
-            { this.state.error && <Message error> {this.state.error} </Message>}
-            { (!this.state.error && this.state.msg) && <Message success> {this.state.msg}</Message>}
+                <h3>Login</h3>
+                { this.state.error && <Message error> {this.state.error} </Message>}
+                { (!this.state.error && this.state.msg) && <Message success> {this.state.msg}</Message>}
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
                         <label>Username</label>

@@ -2,13 +2,13 @@ import mongoose from 'mongoose';
 import passportlocalmongoose from 'passport-local-mongoose'
 
 const UserSchema = new mongoose.Schema({
-    username:{
+    username: {
         type: String,
         required: true,
         lowercase: true,
         unique: true
     },
-    password:{
+    password: {
         type: String
     }
 })

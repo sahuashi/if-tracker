@@ -43,11 +43,11 @@ export default class AddFast extends React.Component {
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '85%' }}>
                 <h1>Add Fast</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <Form.Field style={{marginBottom: '10px'}}>
+                    <Form.Field style={{ marginBottom: '10px' }}>
                         <label>Fast Start: </label>
                         <DateTimePicker value={this.state.startdate} onChange={this.handleStartDateChange} />
                     </Form.Field>
-                    <Form.Field style={{marginBottom: '10px'}}>
+                    <Form.Field style={{ marginBottom: '10px' }}>
                         <label>Fast End: </label>
                         <DateTimePicker value={this.state.enddate} onChange={this.handleEndDateChange} />
                     </Form.Field>

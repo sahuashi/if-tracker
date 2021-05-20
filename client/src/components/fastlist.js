@@ -52,11 +52,11 @@ export default class FastList extends React.Component {
         return (
             <div>
                 <Grid columns={2} textAlign='center'>
-                    <Grid.Row verticalAlign='middle' style={{ 'justifyContent': 'flex-start'}}>
+                    <Grid.Row verticalAlign='middle' style={{ 'justifyContent': 'flex-start' }}>
                         <Grid.Column width='11'>
                             <Segment vertical style={{ overflow: 'auto', maxHeight: '100vh' }}>
-                                <Button basic color="olive" icon onClick={() => { this.props.history.replace("/add") }}><Icon name="add"/></Button>
-                                <Header as="h3" style={{display: 'inline-block', marginLeft: '5px'}}>Logged Fasts <Label circular color='olive'>{this.state.fasts.length}</Label></Header>
+                                <Button basic color="olive" icon onClick={() => { this.props.history.replace("/add") }}><Icon name="add" /></Button>
+                                <Header as="h3" style={{ display: 'inline-block', marginLeft: '5px' }}>Logged Fasts <Label circular color='olive'>{this.state.fasts.length}</Label></Header>
                                 <Card.Group stackable centered style={{ margin: '.875em .5em' }}>
                                     {this.state.fasts.map((fast, i) => (
                                         <div key={fast._id}>
@@ -74,9 +74,9 @@ export default class FastList extends React.Component {
                         <Grid.Column width='3' style={{ 'paddingRight': 0, 'paddingLeft': 0 }}>
                             <Segment color="olive" vertical raised style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%', overflow: 'auto', height: '100vh' }} id="sidebar">
                                 <InfoPanel fast={this.state.selected}
-                                           progress={this.state.progress}
-                                           deleteFast={this.deleteFast}
-                                           history={this.props.history}/>
+                                    progress={this.state.progress}
+                                    deleteFast={this.deleteFast}
+                                    history={this.props.history} />
                             </Segment>
                         </Grid.Column>
                     </Grid.Row>

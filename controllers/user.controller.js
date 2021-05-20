@@ -3,7 +3,7 @@ import User from "../models/user.model.js";
 
 export const register = (req, res) => {
   User.register(
-    new User({username: req.body.username}), req.body.password, (err, user) => {
+    new User({ username: req.body.username }), req.body.password, (err, user) => {
       if (err) {
         err.status = 404;
         return res.send(err);

@@ -6,17 +6,16 @@ import bodyparser from 'body-parser'
 import session from 'express-session'
 import passport from 'passport'
 import { Strategy } from 'passport-local'
+import * as path from 'path';
 import User from './models/user.model.js'
 import fastsRouter from './routes/fasts.js'
 import userRouter from './routes/user.js'
-import * as path from 'path';
 
 dotenv.config();
 
 const app = express();
 
-
-// set up connection to front-end
+// set up for connection to frontend
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
@@ -37,11 +36,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 passport.use(new Strategy(User.authenticate()));
 
-// adds respective routers to app routes
+// add respective routers to routes
 app.use('/fasts', fastsRouter);
 app.use('/user', userRouter);
 
-if(process.env.NODE_ENV === 'production'){
+// configure for production mode
+if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
     app.use('*', express.static('client/build'));
     app.get('*', (req, res) => {
@@ -49,10 +49,10 @@ if(process.env.NODE_ENV === 'production'){
     });
 }
 
+// connect to mongoDB and run server
 const port = process.env.PORT || 5000;
-// set up mongoDB connection
 const mongo = process.env.MONGO_URI;
-mongoose.connect(mongo, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false , useCreateIndex: true})
+mongoose.connect(mongo, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
     .then(() => app.listen(port, () =>
         console.log(`MongoDB connected and server is running on port: ${port}`)))
     .catch((error) => console.log(error.message));

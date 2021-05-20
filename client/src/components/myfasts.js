@@ -19,7 +19,7 @@ export default class MyFasts extends React.Component {
                         <div>
                             <h3>Hi! 👋</h3>
                             <p>To track your fasts, you must create an account or login to an existing account.</p>
-                            <Button style={{backgroundColor: '#DDA15E', color: 'white'}}  onClick={() => { this.props.history.push('/signup') }}>Signup</Button>
+                            <Button style={{ backgroundColor: '#DDA15E', color: 'white' }} onClick={() => { this.props.history.push('/signup') }}>Signup</Button>
                             <Button color="olive" onClick={() => { this.props.history.push('/login') }}>Login</Button>
                         </div>
                     </div>

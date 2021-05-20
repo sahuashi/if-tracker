@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Icon, Segment, Menu, Sidebar, Container } from 'semantic-ui-react'
-import {IoLeafSharp} from 'react-icons/io5';
+import { IoLeafSharp } from 'react-icons/io5';
 import RegisterUser from "./components/registeruser";
 import LoginUser from "./components/loginuser";
 import MyFasts from "./components/myfasts";
@@ -25,13 +25,13 @@ function App() {
     <Router>
       <Container fluid>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='push' vertical secondary visible width='thin' 
-          style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}} id="sidebar">
-            <IoLeafSharp size='2em' color="green"/>
+          <Sidebar as={Menu} vertical secondary visible width='thin'
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} id="sidebar">
+            <IoLeafSharp size='2em' color="green" />
             <Menu.Item header>SixteenAte</Menu.Item>
-            <Menu.Item as={Link} to="/" id="navitem"><Icon name="stopwatch"/>My Fasts</Menu.Item>
-            {!user.isLoggedIn && <Menu.Item as={Link} to="/login" id="navitem"><Icon name="user"/>Login</Menu.Item>}
-            {user.isLoggedIn && <Menu.Item as={Link} to="/logout" id="navitem"><Icon name="user outline"/>Logout</Menu.Item>}
+            <Menu.Item as={Link} to="/" id="navitem"><Icon name="stopwatch" />My Fasts</Menu.Item>
+            {!user.isLoggedIn && <Menu.Item as={Link} to="/login" id="navitem"><Icon name="user" />Login</Menu.Item>}
+            {user.isLoggedIn && <Menu.Item as={Link} to="/logout" id="navitem"><Icon name="user outline" />Logout</Menu.Item>}
           </Sidebar>
           <Sidebar.Pusher>
             <Segment style={{ 'paddingTop': 0, 'paddingBottom': 0 }}>

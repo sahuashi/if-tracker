@@ -70,7 +70,7 @@ export default class RegisterUser extends React.Component {
                             value={this.state.password}
                             onChange={this.handlePasswordChange} />
                     </Form.Field>
-                    <Button style={{backgroundColor: '#DDA15E', color: 'white'}} type="submit">Register</Button>
+                    <Button style={{ backgroundColor: '#DDA15E', color: 'white' }} type="submit">Register</Button>
                 </Form>
             </div>
         );

@@ -31,7 +31,7 @@ export default class Fast extends React.Component {
 
     getElapsed() {
         var elapsed = ((new Date()) - this.state.start) / 1000;
-        if(elapsed < 0){
+        if (elapsed < 0) {
             elapsed = 0;
         }
         this.setState({ elapsed: elapsed }, () => {
@@ -45,25 +45,25 @@ export default class Fast extends React.Component {
         this.setState({ progress: progress });
     }
 
-    updatePanel(){
+    updatePanel() {
         this.props.updatePanel(this.state.id, this.state.progress);
     }
 
     render() {
-        var progressbar = this.state.progress === 100? 
-            <Progress color="olive" percent={100} style={{'marginBottom': '1em'}}/> :
-            <Progress indicating percent={this.state.progress} style={{'marginBottom': '1em'}}/>;
+        var progressbar = this.state.progress === 100 ?
+            <Progress color="olive" percent={100} style={{ 'marginBottom': '1em' }} /> :
+            <Progress indicating percent={this.state.progress} style={{ 'marginBottom': '1em' }} />;
 
         return (
             <div>
-                <Card style={{margin: '0em 1em'}} onClick={this.updatePanel}>
-                {this.state.progress === 100 && <Label floating circular><Icon color="brown" name="check" style={{margin: '0'}}/></Label>}
+                <Card style={{ margin: '0em 1em' }} onClick={this.updatePanel}>
+                    {this.state.progress === 100 && <Label floating circular><Icon color="brown" name="check" style={{ margin: '0' }} /></Label>}
                     <Card.Content>
-                        <Card.Header style={{marginBottom: '0.25em', color: '#283618'}}>Fast #{this.props.index + 1}</Card.Header>
-                        <div id="cardbody"><Icon color="olive" name="hourglass start"/> <Moment format="MMMM DD, YYYY @ hh:mm A" date={this.state.start} /></div>
-                        <div id="cardbody"><Icon color="olive" name="hourglass end"/> <Moment format="MMMM DD, YYYY @ hh:mm A" date={this.state.end}/></div>
+                        <Card.Header style={{ marginBottom: '0.25em', color: '#283618' }}>Fast #{this.props.index + 1}</Card.Header>
+                        <div id="cardbody"><Icon color="olive" name="hourglass start" /> <Moment format="MMMM DD, YYYY @ hh:mm A" date={this.state.start} /></div>
+                        <div id="cardbody"><Icon color="olive" name="hourglass end" /> <Moment format="MMMM DD, YYYY @ hh:mm A" date={this.state.end} /></div>
                         {progressbar}
-                        <Card.Meta style={{marginBottom: '0.5em'}}>Duration: <Moment duration={this.state.start} date={this.state.end}/></Card.Meta>
+                        <Card.Meta style={{ marginBottom: '0.5em' }}>Duration: <Moment duration={this.state.start} date={this.state.end} /></Card.Meta>
                     </Card.Content>
                 </Card>
             </div>)

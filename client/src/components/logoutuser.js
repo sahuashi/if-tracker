@@ -1,29 +1,30 @@
 import React from 'react';
 import axios from 'axios'
 
-export default class LogoutUser extends React.Component{
+export default class LogoutUser extends React.Component {
 
-    componentDidMount(){
+    componentDidMount() {
         const config = {
             withCredentials: true,
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
-          };
+        };
         axios.get('/user/logout', config)
-        .then(res => {
-            this.props.onChange({
-                id: "",
-                isLoggedIn: false,
+            .then(res => {
+                this.props.onChange({
+                    id: "",
+                    isLoggedIn: false,
+                })
+                this.props.history.replace({
+                    pathname: '/',
+                    data: { msg: `Successfully logged out, ${res.data.msg}!` }
+                });
             })
-            this.props.history.replace({
-                pathname: '/',
-                data: { msg: `Successfully logged out, ${res.data.msg}!` }});
-        })
-        .catch(err => {console.log(err)})
+            .catch(err => { console.log(err) })
     }
-    
-    render(){
+
+    render() {
         return (
             <div></div>
         );
