@@ -1,8 +1,8 @@
-![logo](client/public/logo.png)
 # SixteenAte: Intermittent Fasting Tracker
 A web application that allows users to track and manage their fasts.
-
+![landing page](client/public/landing.png)
 Built with JavaScript, React, Node.js, Express.js, MongoDB and Bootstrap.
+![code snippet](client/public/code.png)
 
 ## Demo
 ![demo gif](client/public/demo.gif)
