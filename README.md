@@ -22,4 +22,6 @@ Released under the MIT License. See `LICENSE` for more information.
 ## Acknowledgments
 * [react-moment](https://www.npmjs.com/package/react-moment)
 * [react-datetime-picker](https://www.npmjs.com/package/react-datetime-picker)
+* [react-circular-progressbar](https://www.npmjs.com/package/react-circular-progressbar)
+* [semantic-ui-react](https://react.semantic-ui.com)
 * [passport-local-mongoose](https://www.npmjs.com/package/passport-local-mongoose)
