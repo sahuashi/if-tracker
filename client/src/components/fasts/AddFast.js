@@ -2,7 +2,7 @@ import React from 'react';
 
 import axios from 'axios';
 import DateTimePicker from 'react-datetime-picker';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Label } from 'semantic-ui-react';
 
 export default class AddFast extends React.Component {
   constructor(props) {
@@ -43,8 +43,8 @@ export default class AddFast extends React.Component {
       >
         <h1>Add Fast</h1>
         <form onSubmit={this.handleSubmit}>
-          <Form.Field style={{ marginBottom: '10px' }}>
-            <label>Fast Start: </label>
+          <Form.Field style={{ padding: '5px' }}>
+            <Label style={{ margin: '10px' }} size="large">Start: </Label>
             <DateTimePicker
               value={new Date(this.state.startdate)}
               onChange={(date) => {
@@ -53,15 +53,22 @@ export default class AddFast extends React.Component {
               }}
             />
           </Form.Field>
-          <Button.Group>
-            <Button value={8} type="button" onClick={this.handleDurationButtonClick}>8 hrs</Button>
-            <Button.Or />
-            <Button value={12} type="button" onClick={this.handleDurationButtonClick}>12 hrs</Button>
-            <Button.Or />
-            <Button value={16} type="button" onClick={this.handleDurationButtonClick}>16 hrs</Button>
-          </Button.Group>
-          <Form.Field style={{ marginBottom: '10px' }}>
-            <label>Fast End: </label>
+          <Form.Field style={{ padding: '5px' }}>
+            <Label style={{ margin: '10px' }} size="large">Duration: </Label>
+            <Button.Group>
+              <Button value={8} type="button" onClick={this.handleDurationButtonClick} color="olive">8 hours</Button>
+              <Button.Or />
+              <Button value={12} type="button" onClick={this.handleDurationButtonClick} style={{ backgroundColor: '#DDA15E', color: 'white' }}>12 hours</Button>
+              <Button.Or />
+              <Button value={16} type="button" onClick={this.handleDurationButtonClick} color="olive">16 hours</Button>
+              <Button.Or />
+              <Button value={20} type="button" onClick={this.handleDurationButtonClick} style={{ backgroundColor: '#DDA15E', color: 'white' }}>20 hours</Button>
+              <Button.Or />
+              <Button value={24} type="button" onClick={this.handleDurationButtonClick} color="olive">24 hours</Button>
+            </Button.Group>
+          </Form.Field>
+          <Form.Field style={{ padding: '5px' }}>
+            <Label style={{ margin: '10px' }} size="large">End: </Label>
             <DateTimePicker
               value={new Date(this.state.enddate)}
               onChange={(date) => {
