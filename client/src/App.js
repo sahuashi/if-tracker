@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Icon, Segment, Menu, Sidebar, Container } from 'semantic-ui-react'
 import { IoLeafSharp } from 'react-icons/io5';
-import RegisterUser from "./components/registeruser";
-import LoginUser from "./components/loginuser";
-import MyFasts from "./components/myfasts";
-import AddFast from "./components/addfast";
-import EditFast from "./components/editfast";
-import LogoutUser from "./components/logoutuser";
+import RegisterUser from "./components/user/RegisterUser";
+import LoginUser from "./components/user/LoginUser";
+import MyFasts from "./components/fasts/MyFasts";
+import AddFast from "./components/fasts/AddFast";
+import EditFast from "./components/fasts/EditFast";
+import LogoutUser from "./components/user/LogoutUser";
 import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 

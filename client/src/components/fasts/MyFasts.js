@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react'
-import FastList from './fastlist';
+import FastList from './FastList';
 
 export default class MyFasts extends React.Component {
 

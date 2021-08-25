@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import Fast from './fast';
-import InfoPanel from './infopanel'
+import Fast from './Fast';
+import InfoPanel from './InfoPanel'
 import { Button, Card, Grid, Header, Icon, Segment, Label } from 'semantic-ui-react'
 
 export default class FastList extends React.Component {
