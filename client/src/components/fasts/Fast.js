@@ -79,6 +79,7 @@ export default class Fast extends React.Component {
             {progressbar}
             <Card.Meta style={{ marginBottom: '0.5em' }}>
               Duration:
+              {' '}
               <Moment duration={this.state.start} date={this.state.end} />
             </Card.Meta>
           </Card.Content>

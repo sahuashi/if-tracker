@@ -11,17 +11,15 @@ export default class AddFast extends React.Component {
       startdate: new Date(),
       enddate: new Date(),
     };
-    this.handleStartDateChange = this.handleStartDateChange.bind(this);
-    this.handleEndDateChange = this.handleEndDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleStartDateChange(date) {
-    this.setState({ startdate: date });
-  }
-
-  handleEndDateChange(date) {
-    this.setState({ enddate: date });
+  handleDurationButtonClick = (event, data) => {
+    // console.log(this.state);
+    const tmp = new Date(this.state.startdate);
+    const hours = data.value;
+    const newEndDate = new Date(tmp.setHours(tmp.getHours() + hours));
+    this.setState({ enddate: newEndDate });
   }
 
   handleSubmit(event) {
@@ -33,7 +31,7 @@ export default class AddFast extends React.Component {
       user: this.props.user.id,
     };
 
-    axios.post('/fasts/add', Fast)
+    axios.post('http://localhost:5000/fasts/add', Fast)
       .then((res) => { this.props.history.replace('/'); });
   }
 
@@ -47,11 +45,30 @@ export default class AddFast extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <Form.Field style={{ marginBottom: '10px' }}>
             <label>Fast Start: </label>
-            <DateTimePicker value={this.state.startdate} onChange={this.handleStartDateChange} />
+            <DateTimePicker
+              value={new Date(this.state.startdate)}
+              onChange={(date) => {
+                this.setState({ startdate: date });
+                this.value = this.state.startdate;
+              }}
+            />
           </Form.Field>
+          <Button.Group>
+            <Button value={8} type="button" onClick={this.handleDurationButtonClick}>8 hrs</Button>
+            <Button.Or />
+            <Button value={12} type="button" onClick={this.handleDurationButtonClick}>12 hrs</Button>
+            <Button.Or />
+            <Button value={16} type="button" onClick={this.handleDurationButtonClick}>16 hrs</Button>
+          </Button.Group>
           <Form.Field style={{ marginBottom: '10px' }}>
             <label>Fast End: </label>
-            <DateTimePicker value={this.state.enddate} onChange={this.handleEndDateChange} />
+            <DateTimePicker
+              value={new Date(this.state.enddate)}
+              onChange={(date) => {
+                this.setState({ enddate: date });
+                this.value = this.state.enddate;
+              }}
+            />
           </Form.Field>
           <Button color="olive" type="submit">Add Fast</Button>
         </form>
