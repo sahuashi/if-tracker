@@ -66,17 +66,11 @@ export default class EditFast extends React.Component {
           </Form.Field>
           <Form.Field style={{ padding: '5px' }}>
             <Label style={{ margin: '10px' }} size="large">Duration: </Label>
-            <Button.Group>
-              <Button value={8} type="button" onClick={this.handleDurationButtonClick} color="olive">8 hours</Button>
-              <Button.Or />
-              <Button value={12} type="button" onClick={this.handleDurationButtonClick} style={{ backgroundColor: '#DDA15E', color: 'white' }}>12 hours</Button>
-              <Button.Or />
-              <Button value={16} type="button" onClick={this.handleDurationButtonClick} color="olive">16 hours</Button>
-              <Button.Or />
-              <Button value={20} type="button" onClick={this.handleDurationButtonClick} style={{ backgroundColor: '#DDA15E', color: 'white' }}>20 hours</Button>
-              <Button.Or />
-              <Button value={24} type="button" onClick={this.handleDurationButtonClick} color="olive">24 hours</Button>
-            </Button.Group>
+            <Button value={8} type="button" onClick={this.handleDurationButtonClick} color="olive">8 hours</Button>
+            <Button value={12} type="button" onClick={this.handleDurationButtonClick} color="olive">12 hours</Button>
+            <Button value={16} type="button" onClick={this.handleDurationButtonClick} color="olive">16 hours</Button>
+            <Button value={20} type="button" onClick={this.handleDurationButtonClick} color="olive">20 hours</Button>
+            <Button value={24} type="button" onClick={this.handleDurationButtonClick} color="olive">24 hours</Button>
           </Form.Field>
           <Form.Field style={{ padding: '5px' }}>
             <Label style={{ margin: '10px' }} size="large">End: </Label>
