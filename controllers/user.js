@@ -1,5 +1,6 @@
-import passport from "passport";
-import User from "../models/user.model.js";
+import passport from 'passport';
+
+import User from '../models/user.js';
 
 export const register = (req, res) => {
   User.register(
@@ -9,21 +10,21 @@ export const register = (req, res) => {
         return res.send(err);
       }
       return res.sendStatus(200);
-    }
+    },
   );
 };
 
-export const login = passport.authenticate("local", {
-  successRedirect: "/fasts/",
-  failureRedirect: "/user/login",
+export const login = passport.authenticate('local', {
+  successRedirect: '/fasts/',
+  failureRedirect: '/user/login',
 });
 
 export const logout = (req, res) => {
   if (req.user || req.isAuthenticated()) {
-    const username = req.user.username;
+    const { username } = req.user;
     req.logout();
     return res.json({
-      status: "logout",
+      status: 'logout',
       msg: username,
     });
   }

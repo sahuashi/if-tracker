@@ -1,7 +1,10 @@
 import express from 'express';
-import { getFasts, getFast, addFast, editFast, deleteFast } from '../controllers/fast.controller.js'
 
-var router = express.Router()
+import {
+  getFasts, getFast, addFast, editFast, deleteFast,
+} from '../controllers/fasts.js';
+
+const router = express.Router();
 
 router.get('/', getFasts);
 
