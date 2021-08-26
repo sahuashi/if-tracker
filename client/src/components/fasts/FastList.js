@@ -11,9 +11,6 @@ import InfoPanel from './InfoPanel';
 export default class FastList extends React.Component {
   constructor(props) {
     super(props);
-    this.getFasts = this.getFasts.bind(this);
-    this.deleteFast = this.deleteFast.bind(this);
-    this.updatePanel = this.updatePanel.bind(this);
     this.state = { fasts: [], selected: null, progress: 0 };
   }
 
@@ -21,7 +18,7 @@ export default class FastList extends React.Component {
     this.getFasts();
   }
 
-  getFasts() {
+  getFasts = () => {
     const config = {
       withCredentials: true,
       headers: {
@@ -38,7 +35,7 @@ export default class FastList extends React.Component {
       .catch((err) => console.log(err));
   }
 
-  deleteFast(id) {
+  deleteFast = (id) => {
     axios.delete(`/fasts/${id}`)
       .then((res) => {
         this.setState({ fasts: this.state.fasts.filter((fast) => fast._id !== id) });
@@ -48,7 +45,7 @@ export default class FastList extends React.Component {
       });
   }
 
-  updatePanel(id, progress) {
+  updatePanel = (id, progress) => {
     this.setState({
       fasts: this.state.fasts,
       selected: this.state.fasts.find((fast) => fast._id === id),

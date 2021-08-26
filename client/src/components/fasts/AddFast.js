@@ -11,18 +11,16 @@ export default class AddFast extends React.Component {
       startdate: new Date(),
       enddate: new Date(),
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleDurationButtonClick = (event, data) => {
-    // console.log(this.state);
     const tmp = new Date(this.state.startdate);
     const hours = data.value;
     const newEndDate = new Date(tmp.setHours(tmp.getHours() + hours));
     this.setState({ enddate: newEndDate });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     const Fast = {
@@ -31,7 +29,7 @@ export default class AddFast extends React.Component {
       user: this.props.user.id,
     };
 
-    axios.post('http://localhost:5000/fasts/add', Fast)
+    axios.post('/fasts/add', Fast)
       .then((res) => { this.props.history.replace('/'); });
   }
 

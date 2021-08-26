@@ -16,10 +16,6 @@ export default class Fast extends React.Component {
       elapsed: 0,
       progress: 0,
     };
-    this.getDifference = this.getDifference.bind(this);
-    this.getElapsed = this.getElapsed.bind(this);
-    this.getProgress = this.getProgress.bind(this);
-    this.updatePanel = this.updatePanel.bind(this);
   }
 
   componentDidMount() {
@@ -27,12 +23,12 @@ export default class Fast extends React.Component {
     this.getElapsed();
   }
 
-  getDifference() {
+  getDifference = () => {
     const diffInSeconds = (this.state.end - this.state.start) / 1000;
     this.setState({ difference: diffInSeconds });
   }
 
-  getElapsed() {
+  getElapsed = () => {
     let elapsed = ((new Date()) - this.state.start) / 1000;
     if (elapsed < 0) {
       elapsed = 0;
@@ -42,13 +38,13 @@ export default class Fast extends React.Component {
     });
   }
 
-  getProgress() {
+  getProgress = () => {
     let progress = (this.state.elapsed / this.state.difference) * 100;
     progress = progress > 100 ? 100 : Math.round(progress);
     this.setState({ progress });
   }
 
-  updatePanel() {
+  updatePanel = () => {
     this.props.updatePanel(this.state.id, this.state.progress);
   }
 

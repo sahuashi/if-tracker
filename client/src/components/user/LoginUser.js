@@ -14,20 +14,17 @@ export default class LoginUser extends React.Component {
       error: '',
       msg: this.props.location.data ? this.props.location.data.msg : '',
     };
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleUsernameChange(event) {
+  handleUsernameChange = (event) => {
     this.setState({ username: event.target.value });
   }
 
-  handlePasswordChange(event) {
+  handlePasswordChange = (event) => {
     this.setState({ password: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     const User = {
@@ -49,7 +46,7 @@ export default class LoginUser extends React.Component {
       });
   }
 
-  auth() {
+  auth = () => {
     let id = '';
     const config = {
       withCredentials: true,
@@ -64,7 +61,7 @@ export default class LoginUser extends React.Component {
       });
   }
 
-  update(id) {
+  update = (id) => {
     this.props.onChange({
       id,
       isLoggedIn: true,

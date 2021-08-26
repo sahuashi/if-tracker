@@ -8,12 +8,7 @@ import {
 import 'react-circular-progressbar/dist/styles.css';
 
 export default class InfoPanel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.deleteFast = this.deleteFast.bind(this);
-  }
-
-  deleteFast() {
+  deleteFast = () => {
     this.props.deleteFast(this.props.fast._id);
   }
 

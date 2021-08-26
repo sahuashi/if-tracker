@@ -14,15 +14,15 @@ export default class RegisterUser extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleUsernameChange(event) {
+  handleUsernameChange = (event) => {
     this.setState({ username: event.target.value });
   }
 
-  handlePasswordChange(event) {
+  handlePasswordChange = (event) => {
     this.setState({ password: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     const User = {
